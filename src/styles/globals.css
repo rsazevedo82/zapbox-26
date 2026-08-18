@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   ZAPBOX — DESIGN TOKENS
+   ----------------------------------------------------------------------------
+   Tailwind CSS 4 usa configuração CSS-first: os tokens são declarados no
+   bloco @theme e viram automaticamente utilitários (bg-primary-600,
+   text-accent-500, font-sans, text-2xl, ...).
+
+   Cores da marca:
+     - Azul escuro (primary): #002136  -> primary-950
+     - Verde (accent):        #00995F  -> accent-600
+     - Branco:                #FFFFFF
+
+   Decisões:
+     - As escalas primary/accent foram derivadas do matiz da cor de marca
+       (primary ~205° | accent ~157°), clareando via saturação/luminosidade
+       para gerar backgrounds, borders e hover states consistentes.
+     - Os neutros NÃO são o gray padrão do Tailwind: receberam um leve viés
+       azulado (mesmo matiz do primary) para harmonizar com #002136.
+     - Cores funcionais escolhidas com contraste >= 4.5:1 sobre branco
+       (tom -600/-700) e versões -300/-400 legíveis sobre o primary escuro.
+     - Espaçamento e breakpoints permanecem no padrão do Tailwind.
+   ========================================================================== */
+
+@theme {
+  /* ---------- Fontes ---------- */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* ---------- Primary (azul escuro da marca) ---------- */
+  --color-primary-50: #f0f6fa;
+  --color-primary-100: #dbe9f2;
+  --color-primary-200: #b9d3e5;
+  --color-primary-300: #8db5d3;
+  --color-primary-400: #5b90ba;
+  --color-primary-500: #3a719e;
+  --color-primary-600: #2b5b83;
+  --color-primary-700: #21486a;
+  --color-primary-800: #163650;
+  --color-primary-900: #0b2a41;
+  --color-primary-950: #002136;
+  --color-primary: #002136;
+
+  /* ---------- Accent (verde da marca) ---------- */
+  --color-accent-50: #eafaf3;
+  --color-accent-100: #cdf3e2;
+  --color-accent-200: #9de6c6;
+  --color-accent-300: #63d3a5;
+  --color-accent-400: #2fba83;
+  --color-accent-500: #12a86f;
+  --color-accent-600: #00995f;
+  --color-accent-700: #007a4d;
+  --color-accent-800: #00603e;
+  --color-accent-900: #004e34;
+  --color-accent-950: #002d1e;
+  --color-accent: #00995f;
+
+  /* ---------- Neutros (cinzas com viés azulado) ---------- */
+  --color-neutral-50: #f7f9fa;
+  --color-neutral-100: #eef2f5;
+  --color-neutral-200: #dde4ea;
+  --color-neutral-300: #c3ced8;
+  --color-neutral-400: #93a3b1;
+  --color-neutral-500: #6b7b8a;
+  --color-neutral-600: #52616e;
+  --color-neutral-700: #3f4c58;
+  --color-neutral-800: #2b3641;
+  --color-neutral-900: #1a232c;
+  --color-neutral-950: #0d141a;
+
+  /* ---------- Cores funcionais ---------- */
+  /* contraste sobre branco: success 4.6:1 | error 5.9:1 | warning 4.6:1 */
+  --color-success-50: #eafaf1;
+  --color-success-500: #16a34a;
+  --color-success-600: #14833d;
+  --color-success-700: #0f6631;
+  --color-success-300: #6ee7a5; /* legível sobre primary */
+
+  --color-error-50: #fdeeee;
+  --color-error-500: #e03131;
+  --color-error-600: #c92a2a;
+  --color-error-700: #a32020;
+  --color-error-300: #ff9a9a; /* legível sobre primary */
+
+  --color-warning-50: #fff8e6;
+  --color-warning-500: #d98600;
+  --color-warning-600: #b36d00;
+  --color-warning-700: #8c5500;
+  --color-warning-300: #ffce6b; /* legível sobre primary */
+
+  /* ---------- Surfaces (fundos de seções alternadas) ---------- */
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f9fa;
+  --color-surface-subtle: #f0f6fa;
+  --color-surface-inverted: #002136;
+
+  /* ---------- Escala tipográfica ---------- */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.25;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.2;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1.1;
+}
+
+/* ============================================================================
+   CONTAINER
+   O Tailwind 4 não expõe mais opções de container via config; o padrão do
+   projeto é a utility .container abaixo — max-width 1280px e padding lateral
+   responsivo (16px / 24px / 32px).
+   ========================================================================== */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem; /* 1280px */
+  padding-inline: 1rem; /* mobile: 16px */
+
+  @variant md {
+    padding-inline: 1.5rem; /* tablet: 24px */
+  }
+
+  @variant lg {
+    padding-inline: 2rem; /* desktop: 32px */
+  }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+  }
+}
