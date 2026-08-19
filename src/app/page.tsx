@@ -1,6 +1,12 @@
+import { AdditionalModules } from "@/components/sections/AdditionalModules";
+import { AdvancedSolutions } from "@/components/sections/AdvancedSolutions";
+import { EvolutionJourney } from "@/components/sections/EvolutionJourney";
+import { FAQ } from "@/components/sections/FAQ";
 import { Features } from "@/components/sections/Features";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { NarrativeDivider } from "@/components/sections/NarrativeDivider";
 import { Pricing } from "@/components/sections/Pricing";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ProductDemo } from "@/components/sections/ProductDemo";
@@ -8,15 +14,15 @@ import { TheChange } from "@/components/sections/TheChange";
 import { ThreePillars } from "@/components/sections/ThreePillars";
 
 /**
- * Narrativa da homepage em cinco atos:
- *   1. Problema        → ProblemSection
- *   2. Mudança/Solução → TheChange + ThreePillars + Features
- *   3. É fácil começar → HowItWorks
- *   4. Produto real    → ProductDemo
- *   5. Planos          → Pricing
+ * Homepage.
  *
- * Ritmo de fundo (alternado, sem duas seções adjacentes iguais):
- *   escuro → branco → muted → branco → muted → branco → escuro → muted
+ * Primeira metade (produto): do problema até os planos.
+ * Divisor narrativo.
+ * Segunda metade (consultiva): soluções avançadas, jornada e módulos.
+ *
+ * Ritmo de fundo alternado — nenhuma seção adjacente repete:
+ *   escuro, branco, muted, branco, muted, branco, escuro, muted,
+ *   escuro, branco, muted, branco, muted, escuro
  */
 export default function HomePage() {
   return (
@@ -30,9 +36,17 @@ export default function HomePage() {
       <ProductDemo />
       <Pricing />
 
-      {/* Seção: Divisor / Soluções avançadas */}
-      {/* Seção: FAQ */}
-      {/* Seção: CTA final */}
+      <NarrativeDivider />
+      <AdvancedSolutions />
+      <EvolutionJourney />
+      <AdditionalModules />
+
+      {/* Seção: Prova Social — aguardando dados reais (logos, cases, depoimentos) */}
+      {/* Seção: Para Quem É — copy documentada, mas o próprio documento registra
+          que a lista de segmentos é mercado-alvo, não base de clientes confirmada */}
+
+      <FAQ />
+      <FinalCTA />
     </>
   );
 }
