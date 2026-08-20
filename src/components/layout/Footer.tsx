@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -90,7 +90,7 @@ export function Footer() {
                   {SITE_CONFIG.whatsappNumber !== "" && (
                     <li>
                       <a
-                        href={`https://wa.me/${SITE_CONFIG.whatsappNumber}`}
+                        href={getWhatsAppUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={LINK_STYLES}
