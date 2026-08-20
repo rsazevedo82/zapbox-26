@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button } from "@/components/ui/Button";
-import { getWhatsAppUrl } from "@/lib/constants";
+import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
 
 /**
@@ -87,9 +86,9 @@ export function AdditionalModules() {
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Button href={getWhatsAppUrl()} variant="outline" size="md">
+          <SpecialistButton sourceCta="additional-modules-specialist" variant="outline" size="md">
             Falar com especialista
-          </Button>
+          </SpecialistButton>
         </div>
       </div>
     </section>

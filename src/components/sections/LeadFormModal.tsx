@@ -218,11 +218,15 @@ export function LeadFormModal({ isOpen, onClose, planInterest, sourceCta }: Lead
       setStatus("success");
       trackEvent({ event: "form_success", plan: planInterest });
 
-      window.setTimeout(() => {
-        trackEvent({ event: "whatsapp_redirect", plan: planInterest });
-        // location.href em vez de window.open: não é bloqueado por popup blocker.
-        if (url !== "#") window.location.href = url;
-      }, REDIRECT_DELAY_MS);
+      // Sem número configurado não há para onde redirecionar: a tela de sucesso
+      // assume a variante "aguarde o contato" e nenhum redirect é agendado.
+      if (url !== "#") {
+        window.setTimeout(() => {
+          trackEvent({ event: "whatsapp_redirect", plan: planInterest });
+          // location.href em vez de window.open: não é bloqueado por popup blocker.
+          window.location.href = url;
+        }, REDIRECT_DELAY_MS);
+      }
     } catch {
       setFormError("Não foi possível conectar. Tente novamente ou fale direto pelo WhatsApp.");
       setStatus("error");
@@ -264,7 +268,7 @@ export function LeadFormModal({ isOpen, onClose, planInterest, sourceCta }: Lead
         </button>
 
         {status === "success" ? (
-          <SuccessState whatsappUrl={whatsappUrl} titleId={titleId} />
+          <SuccessState whatsappUrl={whatsappUrl} titleId={titleId} onClose={onClose} />
         ) : (
           <>
             <h2 id={titleId} className="text-primary-950 pr-10 text-xl font-bold sm:text-2xl">
@@ -422,7 +426,23 @@ export function LeadFormModal({ isOpen, onClose, planInterest, sourceCta }: Lead
   );
 }
 
-function SuccessState({ whatsappUrl, titleId }: { whatsappUrl: string; titleId: string }) {
+/**
+ * Duas variantes:
+ *  - com número de WhatsApp: anuncia e executa o redirecionamento, com link
+ *    manual de escape para o caso de o navegador bloquear;
+ *  - sem número: não promete redirect nenhum e oferece a saída do modal.
+ */
+function SuccessState({
+  whatsappUrl,
+  titleId,
+  onClose,
+}: {
+  whatsappUrl: string;
+  titleId: string;
+  onClose: () => void;
+}) {
+  const willRedirect = whatsappUrl !== "#";
+
   return (
     <div className="py-4 text-center" role="status">
       <span className="bg-accent-50 text-accent-700 mx-auto flex h-14 w-14 items-center justify-center rounded-full">
@@ -433,17 +453,29 @@ function SuccessState({ whatsappUrl, titleId }: { whatsappUrl: string; titleId: 
         Recebemos seu contato!
       </h2>
 
-      <p className="mt-2 text-sm text-neutral-600">Redirecionando para o WhatsApp...</p>
-
-      {whatsappUrl !== "#" && (
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent-700 mt-4 inline-block text-sm font-semibold underline underline-offset-2"
-        >
-          Se não foi redirecionado, clique aqui para abrir o WhatsApp
-        </a>
+      {willRedirect ? (
+        <>
+          <p className="mt-2 text-sm text-neutral-600">Redirecionando para o WhatsApp...</p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-700 mt-4 inline-block text-sm font-semibold underline underline-offset-2"
+          >
+            Se não foi redirecionado, clique aqui para abrir o WhatsApp
+          </a>
+        </>
+      ) : (
+        <>
+          <p className="mt-2 text-sm text-neutral-600">
+            Um especialista entrará em contato pelo WhatsApp em breve.
+          </p>
+          <div className="mt-6">
+            <Button variant="primary" size="md" onClick={onClose}>
+              Voltar ao site
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );

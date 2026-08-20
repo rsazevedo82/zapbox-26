@@ -37,7 +37,7 @@ export function LegalPage({
             {title}
           </h1>
 
-          <p className="mt-3 text-sm text-neutral-500">Última atualização: {updatedAt}</p>
+          <p className="mt-3 text-sm text-neutral-600">Última atualização: {updatedAt}</p>
 
           <ReviewNotice />
 

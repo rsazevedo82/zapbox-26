@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
+import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { useLeadForm } from "@/components/layout/LeadFormProvider";
-import { getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -145,9 +145,9 @@ export function Header() {
 
         {/* CTAs desktop */}
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
-          <Button href={getWhatsAppUrl()} variant="ghost" size="sm">
+          <SpecialistButton sourceCta="header-specialist" variant="ghost" size="sm">
             Falar com especialista
-          </Button>
+          </SpecialistButton>
           <Button
             variant="primary"
             size="sm"
@@ -226,9 +226,14 @@ export function Header() {
               >
                 Começar agora
               </Button>
-              <Button href={getWhatsAppUrl()} variant="secondary" size="md" onClick={closeMenu}>
+              <SpecialistButton
+                sourceCta="header-mobile-specialist"
+                variant="secondary"
+                size="md"
+                onClick={closeMenu}
+              >
                 Falar com especialista
-              </Button>
+              </SpecialistButton>
             </div>
           </div>
         </div>

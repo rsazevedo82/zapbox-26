@@ -103,7 +103,7 @@ function StateCard({
       <p
         className={cn(
           "text-xs font-semibold tracking-widest uppercase",
-          tone === "accent" ? "text-accent-700" : "text-neutral-500"
+          tone === "accent" ? "text-accent-700" : "text-neutral-600"
         )}
       >
         {label}

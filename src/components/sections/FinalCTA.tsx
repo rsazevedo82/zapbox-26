@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { getWhatsAppUrl } from "@/lib/constants";
+import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
 
 /**
@@ -51,14 +51,14 @@ export function FinalCTA() {
             <div className="grow" />
 
             <div className="mt-8">
-              <Button
-                href={getWhatsAppUrl()}
+              <SpecialistButton
+                sourceCta="final-cta-specialist"
                 variant="secondary"
                 size="lg"
                 className="w-full sm:w-auto"
               >
                 Falar com especialista
-              </Button>
+              </SpecialistButton>
             </div>
           </div>
         </div>

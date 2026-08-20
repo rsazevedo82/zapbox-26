@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/Button";
 import { LeadFormButton } from "@/components/ui/LeadFormButton";
-import { PLANS, getWhatsAppUrl } from "@/lib/constants";
+import { SpecialistButton } from "@/components/ui/SpecialistButton";
+import { PLANS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -93,7 +93,7 @@ export function Pricing() {
                     <span className="text-primary-950 text-4xl font-bold tracking-tight">
                       {formatPrice(plan.price)}
                     </span>
-                    <span className="text-base text-neutral-500">/{plan.period}</span>
+                    <span className="text-base text-neutral-600">/{plan.period}</span>
                   </p>
 
                   <p className="mt-4 text-sm text-neutral-600">{plan.description}</p>
@@ -139,14 +139,14 @@ export function Pricing() {
 
           <p className="mt-6 text-sm text-neutral-600">
             Ficou com dúvida antes de decidir?{" "}
-            <Button
-              href={getWhatsAppUrl()}
+            <SpecialistButton
+              sourceCta="pricing-specialist"
               variant="ghost"
               size="sm"
               className="px-1 py-0 align-baseline"
             >
               Falar com especialista
-            </Button>
+            </SpecialistButton>
           </p>
         </div>
       </div>

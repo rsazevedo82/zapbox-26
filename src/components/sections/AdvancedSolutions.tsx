@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button } from "@/components/ui/Button";
-import { getWhatsAppUrl } from "@/lib/constants";
+import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,6 +15,8 @@ import { cn } from "@/lib/utils";
  */
 
 type Solution = {
+  /** Slug estável para identificar a origem do CTA no analytics. */
+  id: string;
   name: string;
   headline: string;
   text: string;
@@ -26,6 +27,7 @@ type Solution = {
 
 const SOLUTIONS: Solution[] = [
   {
+    id: "crm-vendas",
     name: "CRM & Vendas",
     headline: "Transforme conversas em oportunidades de venda",
     text: "Organize leads, propostas e negociações em um pipeline comercial e acompanhe cada oportunidade até o fechamento.",
@@ -40,6 +42,7 @@ const SOLUTIONS: Solution[] = [
     icon: <PipelineIcon />,
   },
   {
+    id: "automacoes",
     name: "Automações",
     headline: "Elimine tarefas que sua equipe ainda faz manualmente",
     text: "Automatize distribuição de leads, alertas, atualizações e follow-ups entre o Zapbox e os sistemas da empresa.",
@@ -54,6 +57,7 @@ const SOLUTIONS: Solution[] = [
     icon: <AutomationIcon />,
   },
   {
+    id: "sales-ai",
     name: "Sales AI",
     headline: "Adicione inteligência à operação",
     text: "Use inteligência artificial para responder, qualificar, resumir conversas e apoiar sua equipe 24 horas por dia — sem substituir o atendimento humano.",
@@ -92,7 +96,7 @@ export function AdvancedSolutions() {
 
         <ul className="mt-12 grid items-stretch gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">
           {SOLUTIONS.map((solution) => (
-            <li key={solution.name} className="flex">
+            <li key={solution.id} className="flex">
               <div
                 className={cn(
                   "flex w-full flex-col rounded-lg p-6 lg:p-8",
@@ -125,18 +129,23 @@ export function AdvancedSolutions() {
 
                 <div className="mt-8 grow" />
 
-                <Button href={getWhatsAppUrl()} variant="outline" size="md" className="w-full">
+                <SpecialistButton
+                  sourceCta={`advanced-solutions-${solution.id}`}
+                  variant="outline"
+                  size="md"
+                  className="w-full"
+                >
                   {solution.ctaLabel}
-                </Button>
+                </SpecialistButton>
               </div>
             </li>
           ))}
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Button href={getWhatsAppUrl()} variant="primary" size="lg">
+          <SpecialistButton sourceCta="advanced-solutions-specialist" variant="primary" size="lg">
             Falar com especialista
-          </Button>
+          </SpecialistButton>
         </div>
       </div>
     </section>

@@ -25,7 +25,9 @@ const BASE_STYLES = cn(
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
   // Ação principal de conversão.
-  primary: cn("bg-accent-600 text-white hover:bg-accent-700", "focus-visible:outline-accent-400"),
+  // accent-700 (não accent-600): branco sobre #00995F dá 3,67:1, abaixo do
+  // mínimo AA de 4,5:1. Sobre accent-700 o contraste sobe para 5,40:1.
+  primary: cn("bg-accent-700 text-white hover:bg-accent-800", "focus-visible:outline-accent-400"),
   // Pensada para superfícies escuras (hero sobre primary-950).
   secondary: cn(
     "border border-white/30 bg-transparent text-white hover:bg-white/10",
