@@ -5,8 +5,10 @@ import { CookieConsent } from "@/components/layout/CookieConsent";
 import { GTMNoScript } from "@/components/layout/GTMNoScript";
 import { Footer } from "@/components/layout/Footer";
 import { GTMScript } from "@/components/layout/GTMScript";
+import { JsonLd } from "@/components/layout/JsonLd";
 import { LeadFormProvider } from "@/components/layout/LeadFormProvider";
 import { Header } from "@/components/layout/Header";
+import { SITE_CONFIG } from "@/lib/constants";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -16,10 +18,59 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * Title e description da home vêm de `geral/zapbox-copy-site.md`,
+ * seção "13. META TITLES E META DESCRIPTIONS".
+ */
+const SITE_TITLE = "Zapbox | Atendimento em equipe pelo WhatsApp";
+const SITE_DESCRIPTION =
+  "Centralize seu WhatsApp, organize atendentes e mantenha todo o histórico da operação em um só lugar. Comece simples e evolua com CRM, automações e IA.";
+
 export const metadata: Metadata = {
-  title: "Zapbox | Atendimento em equipe pelo WhatsApp",
-  description:
-    "Centralize seu WhatsApp, organize atendentes e mantenha todo o histórico da operação em um só lugar.",
+  metadataBase: new URL(SITE_CONFIG.url),
+  title: {
+    default: SITE_TITLE,
+    template: "%s | Zapbox",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "atendimento whatsapp",
+    "whatsapp para empresas",
+    "múltiplos atendentes whatsapp",
+    "central de atendimento whatsapp",
+    "whatsapp equipe",
+    "zapbox",
+  ],
+  authors: [{ name: SITE_CONFIG.name }],
+  creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.company,
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    // images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    // Descomentar quando a arte de OG (1200x630) existir.
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -32,6 +83,7 @@ export default function RootLayout({
       <body className="bg-surface font-sans text-neutral-900 antialiased">
         <GTMNoScript />
         <GTMScript />
+        <JsonLd />
 
         <a
           href="#conteudo"
