@@ -72,6 +72,41 @@ export const PLANS = [
   },
 ] as const;
 
+/** Id de plano, derivado de PLANS — evita duplicar a união de strings. */
+export type PlanId = (typeof PLANS)[number]["id"];
+
+/** Busca um plano pelo id. */
+export function getPlanById(id: PlanId) {
+  return PLANS.find((plan) => plan.id === id);
+}
+
 // Mensagem para WhatsApp — template com placeholders
 export const WHATSAPP_MESSAGE_TEMPLATE =
   "Olá! Vim pelo site da Zapbox e tenho interesse no plano {plan}. Meu nome é {name}.";
+
+/**
+ * Monta a URL do WhatsApp com a mensagem pré-preenchida.
+ *
+ * Fonte única para todos os links de WhatsApp do site. Enquanto
+ * `SITE_CONFIG.whatsappNumber` estiver vazio, devolve "#" — o CTA continua
+ * visível, mas não gera um link quebrado para wa.me.
+ *
+ * Os placeholders não preenchidos são removidos junto com o trecho de frase
+ * que os acompanha, para a mensagem continuar gramatical.
+ */
+export function getWhatsAppUrl(params?: { name?: string; plan?: string }): string {
+  const number = SITE_CONFIG.whatsappNumber;
+  if (!number) return "#";
+
+  let message: string = WHATSAPP_MESSAGE_TEMPLATE;
+
+  message = params?.plan
+    ? message.replace("{plan}", params.plan)
+    : message.replace(" no plano {plan}", "");
+
+  message = params?.name
+    ? message.replace("{name}", params.name)
+    : message.replace(" Meu nome é {name}.", "");
+
+  return `https://wa.me/${number}?text=${encodeURIComponent(message.trim())}`;
+}

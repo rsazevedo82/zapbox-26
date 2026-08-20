@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
-import { SITE_CONFIG } from "@/lib/constants";
+import { useLeadForm } from "@/components/layout/LeadFormProvider";
+import { getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -27,12 +28,8 @@ const NAV_ITEMS: NavItem[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
-/** Número ainda não definido em constants.ts — cai para "#" sem esconder o CTA. */
-const WHATSAPP_HREF = SITE_CONFIG.whatsappNumber
-  ? `https://wa.me/${SITE_CONFIG.whatsappNumber}`
-  : "#";
-
 export function Header() {
+  const { openForm } = useLeadForm();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -148,10 +145,14 @@ export function Header() {
 
         {/* CTAs desktop */}
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
-          <Button href={WHATSAPP_HREF} variant="ghost" size="sm">
+          <Button href={getWhatsAppUrl()} variant="ghost" size="sm">
             Falar com especialista
           </Button>
-          <Button href="#planos" variant="primary" size="sm">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => openForm({ sourceCta: "header-desktop" })}
+          >
             Começar agora
           </Button>
         </div>
@@ -215,10 +216,17 @@ export function Header() {
             </nav>
 
             <div className="mt-6 flex flex-col gap-3">
-              <Button href="#planos" variant="primary" size="md" onClick={closeMenu}>
+              <Button
+                variant="primary"
+                size="md"
+                onClick={() => {
+                  closeMenu();
+                  openForm({ sourceCta: "header-mobile" });
+                }}
+              >
                 Começar agora
               </Button>
-              <Button href={WHATSAPP_HREF} variant="secondary" size="md" onClick={closeMenu}>
+              <Button href={getWhatsAppUrl()} variant="secondary" size="md" onClick={closeMenu}>
                 Falar com especialista
               </Button>
             </div>

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/Button";
-import { SITE_CONFIG } from "@/lib/constants";
+import { getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -13,10 +13,6 @@ import { cn } from "@/lib/utils";
  * Peso visual deliberadamente menor que o das três soluções avançadas,
  * conforme o objetivo declarado da seção no documento.
  */
-
-const WHATSAPP_HREF = SITE_CONFIG.whatsappNumber
-  ? `https://wa.me/${SITE_CONFIG.whatsappNumber}`
-  : "#";
 
 type Module = {
   name: string;
@@ -91,7 +87,7 @@ export function AdditionalModules() {
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Button href={WHATSAPP_HREF} variant="outline" size="md">
+          <Button href={getWhatsAppUrl()} variant="outline" size="md">
             Falar com especialista
           </Button>
         </div>

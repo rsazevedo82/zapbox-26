@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/Button";
-import { SITE_CONFIG } from "@/lib/constants";
+import { getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -14,10 +14,6 @@ import { cn } from "@/lib/utils";
  * ("Conhecer CRM & Vendas" etc.) levam ao WhatsApp, não a contratação.
  * "Começar agora" não aparece aqui, conforme a regra do documento.
  */
-
-const WHATSAPP_HREF = SITE_CONFIG.whatsappNumber
-  ? `https://wa.me/${SITE_CONFIG.whatsappNumber}`
-  : "#";
 
 type Solution = {
   name: string;
@@ -129,7 +125,7 @@ export function AdvancedSolutions() {
 
                 <div className="mt-8 grow" />
 
-                <Button href={WHATSAPP_HREF} variant="outline" size="md" className="w-full">
+                <Button href={getWhatsAppUrl()} variant="outline" size="md" className="w-full">
                   {solution.ctaLabel}
                 </Button>
               </div>
@@ -138,7 +134,7 @@ export function AdvancedSolutions() {
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Button href={WHATSAPP_HREF} variant="primary" size="lg">
+          <Button href={getWhatsAppUrl()} variant="primary" size="lg">
             Falar com especialista
           </Button>
         </div>

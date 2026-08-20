@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
-import { PLANS, SITE_CONFIG } from "@/lib/constants";
+import { LeadFormButton } from "@/components/ui/LeadFormButton";
+import { PLANS, getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -30,11 +31,6 @@ const PLAN_COPY: Record<string, { idealFor: string; ctaLabel: string }> = {
     ctaLabel: "Escolher Operação",
   },
 };
-
-/** Mesmo fallback usado no Header enquanto o número não está definido. */
-const WHATSAPP_HREF = SITE_CONFIG.whatsappNumber
-  ? `https://wa.me/${SITE_CONFIG.whatsappNumber}`
-  : "#";
 
 function formatPrice(value: number): string {
   return value.toLocaleString("pt-BR");
@@ -120,14 +116,15 @@ export function Pricing() {
                   {/* grow empurra o CTA para a base, equalizando a altura dos cards. */}
                   <div className="mt-8 grow" />
 
-                  <Button
-                    href="#planos"
+                  <LeadFormButton
+                    planInterest={plan.id}
+                    sourceCta={`pricing-${plan.id}`}
                     variant={plan.highlight ? "primary" : "outline"}
                     size="md"
                     className="w-full"
                   >
                     {copy?.ctaLabel ?? "Começar agora"}
-                  </Button>
+                  </LeadFormButton>
                 </div>
               </li>
             );
@@ -143,7 +140,7 @@ export function Pricing() {
           <p className="mt-6 text-sm text-neutral-600">
             Ficou com dúvida antes de decidir?{" "}
             <Button
-              href={WHATSAPP_HREF}
+              href={getWhatsAppUrl()}
               variant="ghost"
               size="sm"
               className="px-1 py-0 align-baseline"

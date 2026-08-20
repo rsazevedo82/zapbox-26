@@ -5,6 +5,7 @@ import { CookieConsent } from "@/components/layout/CookieConsent";
 import { GTMNoScript } from "@/components/layout/GTMNoScript";
 import { Footer } from "@/components/layout/Footer";
 import { GTMScript } from "@/components/layout/GTMScript";
+import { LeadFormProvider } from "@/components/layout/LeadFormProvider";
 import { Header } from "@/components/layout/Header";
 import "@/styles/globals.css";
 
@@ -39,11 +40,13 @@ export default function RootLayout({
           Pular para o conteúdo
         </a>
 
-        <Header />
+        <LeadFormProvider>
+          <Header />
 
-        <main id="conteudo">{children}</main>
+          <main id="conteudo">{children}</main>
 
-        <Footer />
+          <Footer />
+        </LeadFormProvider>
 
         <CookieConsent />
       </body>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { SITE_CONFIG } from "@/lib/constants";
+import { getWhatsAppUrl } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
@@ -12,10 +12,6 @@ import { cn } from "@/lib/utils";
  * apenas os títulos dos dois blocos. Para não inventar copy, cada bloco leva
  * seu título como H2 e a seção recebe um aria-label descritivo.
  */
-
-const WHATSAPP_HREF = SITE_CONFIG.whatsappNumber
-  ? `https://wa.me/${SITE_CONFIG.whatsappNumber}`
-  : "#";
 
 const BLOCK_STYLES = cn(
   "flex flex-col rounded-lg border border-white/15 bg-white/5 p-8 lg:p-10",
@@ -56,7 +52,7 @@ export function FinalCTA() {
 
             <div className="mt-8">
               <Button
-                href={WHATSAPP_HREF}
+                href={getWhatsAppUrl()}
                 variant="secondary"
                 size="lg"
                 className="w-full sm:w-auto"

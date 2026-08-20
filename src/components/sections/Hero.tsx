@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { LeadFormButton } from "@/components/ui/LeadFormButton";
 import { cn } from "@/lib/utils";
 
 /**
@@ -71,9 +72,14 @@ export function Hero() {
 
           {/* CTAs */}
           <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
-            <Button href="#planos" variant="primary" size="lg" className="w-full sm:w-auto">
+            <LeadFormButton
+              sourceCta="hero"
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
               Começar agora
-            </Button>
+            </LeadFormButton>
             <Button
               href="#como-funciona"
               variant="secondary"
