@@ -1,15 +1,18 @@
 export const SITE_CONFIG = {
   name: "Zapbox",
   tagline: "Atendimento em equipe pelo WhatsApp",
-  url: "https://zapbox.com.br", // placeholder — confirmar domínio
+  url: "https://zapbox.cloud",
   company: "RC2 Soluções",
-  // Dados institucionais — preencher quando disponíveis
-  whatsappNumber: "", // placeholder — formato: 5511999999999
-  contactEmail: "", // placeholder
-  // Social
+  // Número comercial: vem do ambiente, não do código. Sem ele, getWhatsAppUrl()
+  // devolve "#" e os CTAs consultivos caem para o formulário de lead.
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
+  // Anotados como `string` (e não literal) de propósito: o footer decide o que
+  // renderizar comparando com "". Sem isso, o `as const` estreitaria o tipo e o
+  // TypeScript passaria a rejeitar essas checagens como impossíveis.
+  contactEmail: "contato@rc2solucoes.com.br" as string,
   socialLinks: {
-    instagram: "", // placeholder
-    linkedin: "", // placeholder
+    instagram: "https://instagram.com/zapbox.cloud" as string,
+    linkedin: "" as string, // ainda não confirmado — fica oculto no footer
   },
 } as const;
 

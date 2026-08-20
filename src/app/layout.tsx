@@ -51,13 +51,20 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    // images: [{ url: "/og-image.png", width: 1200, height: 630 }],
-    // Descomentar quando a arte de OG (1200x630) existir.
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Zapbox — Atendimento em equipe pelo WhatsApp",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

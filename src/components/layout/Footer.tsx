@@ -21,8 +21,8 @@ const LEGAL_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Instagram", href: SITE_CONFIG.socialLinks.instagram },
-  { label: "LinkedIn", href: SITE_CONFIG.socialLinks.linkedin },
+  { label: "Instagram", href: SITE_CONFIG.socialLinks.instagram, Icon: InstagramIcon },
+  { label: "LinkedIn", href: SITE_CONFIG.socialLinks.linkedin, Icon: LinkedInIcon },
 ].filter((link) => link.href !== "");
 
 const LINK_STYLES = cn(
@@ -116,8 +116,9 @@ export function Footer() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={LINK_STYLES}
+                        className={cn(LINK_STYLES, "inline-flex items-center gap-2")}
                       >
+                        <link.Icon />
                         {link.label}
                       </a>
                     </li>
@@ -135,5 +136,42 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+
+const SOCIAL_ICON_PROPS = {
+  width: 18,
+  height: 18,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.75,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true,
+  className: "shrink-0",
+} as const;
+
+function InstagramIcon() {
+  return (
+    <svg {...SOCIAL_ICON_PROPS}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg {...SOCIAL_ICON_PROPS}>
+      <rect x="3" y="3" width="18" height="18" rx="3" />
+      <path d="M7.5 10.5v6" />
+      <path d="M7.5 7.5v.01" />
+      <path d="M11.5 16.5v-3.5a2.5 2.5 0 0 1 5 0v3.5" />
+      <path d="M11.5 10.5v6" />
+    </svg>
   );
 }

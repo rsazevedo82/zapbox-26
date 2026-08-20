@@ -1,6 +1,6 @@
 # Zapbox — Site Oficial
 
-Site institucional e de conversão da [Zapbox](https://zapbox.com.br),
+Site institucional e de conversão da [Zapbox](https://zapbox.cloud),
 plataforma de atendimento e vendas pelo WhatsApp.
 
 ## Stack
