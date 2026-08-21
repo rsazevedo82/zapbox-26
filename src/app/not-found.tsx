@@ -13,10 +13,10 @@ export default function NotFound() {
       <div className="container">
         <div className="mx-auto flex max-w-[32rem] flex-col items-center text-center">
           <Image
-            src="/images/zapbox-icon.png"
+            src="/images/zapbox-mark.png"
             alt=""
-            width={256}
-            height={256}
+            width={192}
+            height={192}
             className="h-14 w-14"
             aria-hidden="true"
           />

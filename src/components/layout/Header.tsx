@@ -115,10 +115,10 @@ export function Header() {
           aria-label="Zapbox — página inicial"
         >
           <Image
-            src="/images/zapbox-logo.png"
+            src="/images/zapbox-logo-light.png"
             alt="Zapbox"
-            width={480}
-            height={160}
+            width={600}
+            height={200}
             priority
             className="h-8 w-auto lg:h-9"
           />
@@ -133,6 +133,8 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     "hover:text-accent-700 text-base font-medium text-neutral-700 transition-colors",
+                    // py-1.5 leva o alvo de clique de 20px para 32px (WCAG 2.5.8 AA).
+                    "inline-block py-1.5",
                     "focus-visible:outline-accent-500 rounded focus-visible:outline-2 focus-visible:outline-offset-4"
                   )}
                 >

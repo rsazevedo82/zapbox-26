@@ -25,8 +25,11 @@ const SOCIAL_LINKS = [
   { label: "LinkedIn", href: SITE_CONFIG.socialLinks.linkedin, Icon: LinkedInIcon },
 ].filter((link) => link.href !== "");
 
+// `py-1` eleva a área clicável de 17px para 25px, acima do mínimo de 24px
+// do WCAG 2.5.8 (AA). O gap das listas cai de 3 para 1 para compensar e o
+// espaçamento visual entre os textos fica idêntico ao anterior.
 const LINK_STYLES = cn(
-  "text-primary-300 text-sm transition-colors hover:text-accent-400",
+  "text-primary-300 inline-block py-1 text-sm transition-colors hover:text-accent-400",
   "rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400"
 );
 
@@ -46,11 +49,11 @@ export function Footer() {
               aria-label="Zapbox — página inicial"
             >
               <Image
-                src="/images/zapbox-icon.png"
+                src="/images/zapbox-logo-dark.png"
                 alt="Zapbox"
-                width={256}
-                height={256}
-                className="h-10 w-10"
+                width={480}
+                height={160}
+                className="h-9 w-auto"
               />
             </Link>
 
@@ -62,7 +65,7 @@ export function Footer() {
             {/* Institucional */}
             <nav aria-label="Links institucionais">
               <h2 className="text-sm font-semibold tracking-wide text-white uppercase">Legal</h2>
-              <ul className="mt-4 flex flex-col gap-3">
+              <ul className="mt-4 flex flex-col gap-1">
                 {LEGAL_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className={LINK_STYLES}>
@@ -79,7 +82,7 @@ export function Footer() {
                 <h2 className="text-sm font-semibold tracking-wide text-white uppercase">
                   Contato
                 </h2>
-                <ul className="mt-4 flex flex-col gap-3">
+                <ul className="mt-4 flex flex-col gap-1">
                   {SITE_CONFIG.contactEmail !== "" && (
                     <li>
                       <a href={`mailto:${SITE_CONFIG.contactEmail}`} className={LINK_STYLES}>
@@ -109,7 +112,7 @@ export function Footer() {
                 <h2 className="text-sm font-semibold tracking-wide text-white uppercase">
                   Redes sociais
                 </h2>
-                <ul className="mt-4 flex flex-col gap-3">
+                <ul className="mt-4 flex flex-col gap-1">
                   {SOCIAL_LINKS.map((link) => (
                     <li key={link.label}>
                       <a

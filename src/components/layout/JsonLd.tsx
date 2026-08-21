@@ -23,7 +23,7 @@ export function JsonLd() {
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
     description: "Plataforma de atendimento e vendas pelo WhatsApp",
-    logo: `${SITE_CONFIG.url}/images/zapbox-logo.png`,
+    logo: `${SITE_CONFIG.url}/images/zapbox-logo-light.png`,
     parentOrganization: {
       "@type": "Organization",
       name: SITE_CONFIG.company,
