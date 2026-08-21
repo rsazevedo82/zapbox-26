@@ -126,6 +126,10 @@
   /* Usadas com o prefixo `motion-safe:` para respeitar prefers-reduced-motion. */
   --animate-consent-in: consent-in 220ms var(--ease-fluid);
   --animate-node-pulse: node-pulse 3.2s ease-in-out infinite;
+  /* Entrada do hero: a única sequência coreografada do site. */
+  --animate-enter: enter 520ms var(--ease-fluid) both;
+  /* Deriva lentíssima do feixe — 48s por ciclo, quase imperceptível. */
+  --animate-beam-drift: beam-drift 48s ease-in-out infinite;
 
   @keyframes consent-in {
     from {
@@ -135,6 +139,30 @@
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* O halo do feixe respira devagar, dando vida sem chamar atenção. */
+  @keyframes beam-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translate3d(-2%, 1.5%, 0) scale(1.06);
+      opacity: 1;
     }
   }
 
@@ -191,7 +219,7 @@
     inset: 0;
     z-index: -1;
     background:
-      radial-gradient(60rem 32rem at 68% -10%, rgb(0 153 95 / 0.22), transparent 60%),
+      radial-gradient(60rem 32rem at 68% -10%, rgb(0 153 95 / 0.26), transparent 60%),
       radial-gradient(44rem 26rem at 12% 8%, rgb(43 91 131 / 0.28), transparent 62%),
       conic-gradient(
         from 180deg at 50% -20%,
@@ -308,6 +336,42 @@
   background-image: linear-gradient(to right, transparent, rgb(0 153 95 / 0.5), transparent);
 }
 
+/* ============================================================================
+   REVELAÇÃO AO ROLAR
+
+   Regra de segurança: o estado PADRÃO é visível. O JavaScript é quem aplica
+   `data-reveal="hidden"`. Sem JS, ou se o observer falhar, todo o conteúdo
+   aparece normalmente — nada fica preso invisível.
+   ========================================================================== */
+[data-reveal] {
+  transition:
+    opacity var(--reveal-duration, 600ms) var(--ease-fluid) var(--reveal-delay, 0ms),
+    transform var(--reveal-duration, 600ms) var(--ease-fluid) var(--reveal-delay, 0ms);
+}
+
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: var(--reveal-from, translateY(1.5rem));
+  will-change: opacity, transform;
+}
+
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sem movimento: nada se esconde e nada faz transição. */
+  [data-reveal],
+  [data-reveal="hidden"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+}
+
 /* ---------- Base ---------- */
 @layer base {
   html {
@@ -315,7 +379,36 @@
     scroll-behavior: smooth;
   }
 
+  /* O header é fixo (64px / 80px): as âncoras precisam parar abaixo dele. */
+  :target,
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    :target,
+    section[id] {
+      scroll-margin-top: 6rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     text-rendering: optimizeLegibility;
+  }
+
+  /*
+    Reveals com deslocamento horizontal empurram o conteúdo para fora da
+    viewport enquanto estão escondidos, criando scroll lateral no mobile.
+    `clip` (e não `hidden`) corta sem criar contêiner de rolagem — o header
+    fixo, o modal e o banner de cookies ficam fora do <main> e não são afetados.
+  */
+  main {
+    overflow-x: clip;
   }
 }

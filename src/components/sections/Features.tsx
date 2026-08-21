@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 6 — BENEFÍCIOS / RECURSOS.
@@ -60,19 +61,21 @@ export function Features() {
       className="surface-noise bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="solucoes-titulo"
             className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
           >
             Tudo o que sua equipe precisa para atender melhor
           </h2>
-        </div>
+        </ScrollReveal>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-8">
-          {FEATURES.map((feature) => (
-            <li
+          {FEATURES.map((feature, i) => (
+            <ScrollReveal
               key={feature.title}
+              // Zigue-zague: a coluna do meio entra um pouco depois das laterais.
+              delay={(i % 3) * 80 + (Math.floor(i / 3) % 2 === 1 ? 40 : 0)}
               className={cn("card-surface card-lift group flex flex-col rounded-xl p-6")}
             >
               <span
@@ -87,7 +90,7 @@ export function Features() {
 
               <h3 className="text-primary-950 mt-5 text-lg font-semibold">{feature.title}</h3>
               <p className="mt-2 text-base text-neutral-600">{feature.description}</p>
-            </li>
+            </ScrollReveal>
           ))}
         </ul>
       </div>

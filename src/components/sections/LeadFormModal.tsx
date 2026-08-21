@@ -372,7 +372,7 @@ export function LeadFormModal({ isOpen, onClose, planInterest, sourceCta }: Lead
                     e soluções. Leia nossa{" "}
                     <Link
                       href="/privacidade"
-                      className="text-accent-700 font-medium underline underline-offset-2"
+                      className="text-accent-700 hover:text-accent-800 font-medium underline underline-offset-2 transition-colors"
                     >
                       Política de Privacidade
                     </Link>
@@ -395,7 +395,7 @@ export function LeadFormModal({ isOpen, onClose, planInterest, sourceCta }: Lead
                     href={getWhatsAppUrl({ name: name || undefined, plan: plan?.name })}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-block font-semibold underline underline-offset-2"
+                    className="mt-1 inline-block font-semibold underline underline-offset-2 transition-colors hover:no-underline"
                   >
                     Falar direto pelo WhatsApp
                   </a>
@@ -460,7 +460,7 @@ function SuccessState({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent-700 mt-4 inline-block text-sm font-semibold underline underline-offset-2"
+            className="text-accent-700 hover:text-accent-800 mt-4 inline-block text-sm font-semibold underline underline-offset-2 transition-colors"
           >
             Se não foi redirecionado, clique aqui para abrir o WhatsApp
           </a>

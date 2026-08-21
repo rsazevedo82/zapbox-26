@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { useLeadForm } from "@/components/layout/LeadFormProvider";
+import { useActiveSection } from "@/components/layout/useActiveSection";
 import { cn } from "@/lib/utils";
 
 /**
@@ -28,8 +29,12 @@ const NAV_ITEMS: NavItem[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
+/** Ids observados para marcar o link da seção em leitura. */
+const NAV_IDS = NAV_ITEMS.map((item) => item.href.slice(1));
+
 export function Header() {
   const { openForm } = useLeadForm();
+  const activeSection = useActiveSection(NAV_IDS);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -105,9 +110,19 @@ export function Header() {
       className={cn(
         "bg-surface fixed inset-x-0 top-0 z-40 h-16 lg:h-20",
         "transition-shadow duration-200",
-        scrolled ? "shadow-sm ring-1 ring-neutral-200/70 backdrop-blur" : "shadow-none"
+        scrolled
+          ? "bg-surface/85 shadow-[0_1px_24px_-8px_rgb(0_33_54/0.25)] backdrop-blur-xl"
+          : "shadow-none"
       )}
     >
+      {/* Filete accent que acende quando a página sai do topo. */}
+      <div
+        aria-hidden="true"
+        className={cn(
+          "rule-gradient ease-fluid absolute inset-x-0 bottom-0 transition-opacity duration-300",
+          scrolled ? "opacity-100" : "opacity-0"
+        )}
+      />
       <div className="container flex h-full items-center justify-between gap-6">
         <Link
           href="/"
@@ -127,21 +142,31 @@ export function Header() {
         {/* Navegação desktop */}
         <nav aria-label="Navegação principal" className="hidden lg:block">
           <ul className="flex items-center gap-8">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className={cn(
-                    "hover:text-accent-700 text-base font-medium text-neutral-700 transition-colors",
-                    // py-1.5 leva o alvo de clique de 20px para 32px (WCAG 2.5.8 AA).
-                    "inline-block py-1.5",
-                    "focus-visible:outline-accent-500 rounded focus-visible:outline-2 focus-visible:outline-offset-4"
-                  )}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    aria-current={isActive ? "true" : undefined}
+                    className={cn(
+                      "hover:text-accent-700 ease-fluid relative text-base font-medium transition-colors duration-200",
+                      // py-1.5 leva o alvo de clique de 20px para 32px (WCAG 2.5.8 AA).
+                      "inline-block py-1.5",
+                      isActive ? "text-accent-700" : "text-neutral-700",
+                      // Sublinhado que cresce a partir do centro na seção em leitura.
+                      "after:bg-accent-600 after:ease-fluid after:absolute after:inset-x-0 after:-bottom-0.5",
+                      "after:mx-auto after:h-0.5 after:rounded-full after:transition-all after:duration-300",
+                      isActive ? "after:w-full" : "after:w-0",
+                      "focus-visible:outline-accent-500 rounded focus-visible:outline-2 focus-visible:outline-offset-4"
+                    )}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

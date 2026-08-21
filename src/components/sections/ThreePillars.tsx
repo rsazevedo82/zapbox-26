@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 4 — COMO A ZAPBOX RESOLVE.
@@ -47,7 +48,7 @@ export function ThreePillars() {
       className="surface-noise bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <p className="text-accent-700 text-sm font-semibold tracking-widest uppercase">
             Como funciona por dentro
           </p>
@@ -58,12 +59,14 @@ export function ThreePillars() {
           >
             Três pilares que tiram o WhatsApp do improviso
           </h2>
-        </div>
+        </ScrollReveal>
 
         <ul className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">
-          {PILLARS.map((pillar) => (
-            <li
+          {PILLARS.map((pillar, i) => (
+            <ScrollReveal
               key={pillar.title}
+              as="li"
+              delay={i * 90}
               className="card-surface card-lift flex flex-col rounded-xl p-6 lg:p-8"
             >
               <span
@@ -77,7 +80,7 @@ export function ThreePillars() {
 
               <h3 className="text-primary-950 mt-5 text-xl font-semibold">{pillar.title}</h3>
               <p className="mt-3 text-base text-neutral-600">{pillar.description}</p>
-            </li>
+            </ScrollReveal>
           ))}
         </ul>
       </div>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 3 — A MUDANÇA.
@@ -20,7 +21,7 @@ export function TheChange() {
       className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[45rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[45rem] text-center">
           <p className="text-accent-700 text-sm font-semibold tracking-widest uppercase">
             A mudança
           </p>
@@ -41,27 +42,31 @@ export function TheChange() {
             A Zapbox organiza sua equipe, centraliza o histórico e dá visibilidade ao gestor — para
             que atender bem deixe de depender da sorte de quem pegou o celular primeiro.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Diagrama antes → depois */}
         <div className="mx-auto mt-12 grid max-w-[52rem] items-stretch gap-4 sm:grid-cols-[1fr_auto_1fr]">
-          <StateCard
-            label="Antes"
-            description="Um único aparelho passando de mão em mão"
-            tone="muted"
-            icon={<PhoneIcon />}
-          />
+          <ScrollReveal direction="left" distance="1rem">
+            <StateCard
+              label="Antes"
+              description="Um único aparelho passando de mão em mão"
+              tone="muted"
+              icon={<PhoneIcon />}
+            />
+          </ScrollReveal>
 
           <div className="flex items-center justify-center" aria-hidden="true">
             <ArrowIcon />
           </div>
 
-          <StateCard
-            label="Depois"
-            description="Uma central com múltiplos usuários organizados"
-            tone="accent"
-            icon={<HubIcon />}
-          />
+          <ScrollReveal direction="right" distance="1rem" delay={120}>
+            <StateCard
+              label="Depois"
+              description="Uma central com múltiplos usuários organizados"
+              tone="accent"
+              icon={<HubIcon />}
+            />
+          </ScrollReveal>
         </div>
 
         <div className="mt-12 flex justify-center">

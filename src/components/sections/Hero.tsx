@@ -12,6 +12,15 @@ import { cn } from "@/lib/utils";
  * Server component: não há interatividade própria aqui.
  */
 
+/**
+ * Entrada escalonada — a única sequência coreografada do site.
+ * `motion-safe:` garante que nada anima com prefers-reduced-motion; sem ele,
+ * `animation-fill-mode: both` deixaria os elementos presos em opacity 0.
+ */
+const ENTER = "motion-safe:animate-enter";
+/** O delay vai em style inline: o JIT do Tailwind não vê classes montadas em runtime. */
+const enterDelay = (ms: number) => ({ animationDelay: `${ms}ms` });
+
 const MICRO_BENEFITS = [
   "Vários atendentes no mesmo WhatsApp",
   "Histórico centralizado da conversa",
@@ -41,8 +50,10 @@ export function Hero() {
           <p
             className={cn(
               "glass-panel inline-flex items-start gap-2 rounded-full",
-              "text-primary-100 px-4 py-1.5 text-xs font-medium tracking-[0.14em] uppercase"
+              "text-primary-100 px-4 py-1.5 text-xs font-medium tracking-[0.14em] uppercase",
+              ENTER
             )}
+            style={enterDelay(100)}
           >
             <span
               aria-hidden="true"
@@ -54,9 +65,11 @@ export function Hero() {
           <h1
             id="hero-titulo"
             className={cn(
-              "text-shine mt-7 text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl",
-              "[text-wrap:balance]"
+              "text-shine mt-7 text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-7xl",
+              "leading-[1.08]",
+              ENTER
             )}
+            style={enterDelay(200)}
           >
             Transforme seu WhatsApp em uma{" "}
             <span className="from-accent-300 to-accent-500 bg-gradient-to-b bg-clip-text text-transparent">
@@ -64,13 +77,22 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="text-primary-200 mt-6 max-w-[42rem] text-base sm:text-lg lg:text-xl">
+          <p
+            className={cn(
+              "text-primary-200 mt-6 max-w-[42rem] text-base sm:text-lg lg:text-xl",
+              ENTER
+            )}
+            style={enterDelay(350)}
+          >
             Um único número, vários atendentes e todo o histórico em um só lugar — para sua equipe
             atender e vender sem perder conversas.
           </p>
 
           {/* CTAs */}
-          <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
+          <div
+            className={cn("mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4", ENTER)}
+            style={enterDelay(500)}
+          >
             <LeadFormButton
               sourceCta="hero"
               variant="primary"
@@ -95,12 +117,15 @@ export function Hero() {
             o site não tem contratação self-service. Mantida a primeira frase e ajustada
             a segunda para preservar a ideia de baixo atrito sem prometer imediatismo.
           */}
-          <p className="text-primary-300 mt-6 text-sm">
+          <p className={cn("text-primary-300 mt-6 text-sm", ENTER)} style={enterDelay(600)}>
             Sem trocar seu número. Comece a organizar sua operação com nosso time.
           </p>
 
           {/* Microbenefícios */}
-          <ul className="mt-14 grid w-full gap-3 text-left sm:grid-cols-2">
+          <ul
+            className={cn("mt-14 grid w-full gap-3 text-left sm:grid-cols-2", ENTER)}
+            style={enterDelay(700)}
+          >
             {MICRO_BENEFITS.map((benefit) => (
               <li
                 key={benefit}

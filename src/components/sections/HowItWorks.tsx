@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 7 — COMO FUNCIONA.
@@ -41,14 +42,14 @@ export function HowItWorks() {
       className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="como-funciona-titulo"
             className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
           >
             Começar é simples
           </h2>
-        </div>
+        </ScrollReveal>
 
         <ol className="relative mt-12 grid gap-8 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-6">
           {/*
@@ -62,7 +63,12 @@ export function HowItWorks() {
           />
 
           {STEPS.map((step, index) => (
-            <li key={step.title} className="relative flex flex-col lg:items-center lg:text-center">
+            <ScrollReveal
+              key={step.title}
+              as="li"
+              delay={index * 90}
+              className="relative flex flex-col lg:items-center lg:text-center"
+            >
               <span
                 className={cn(
                   "from-accent-600 to-accent-700 flex h-12 w-12 shrink-0 items-center justify-center bg-gradient-to-b",
@@ -75,7 +81,7 @@ export function HowItWorks() {
 
               <h3 className="text-primary-950 mt-5 text-lg font-semibold">{step.title}</h3>
               <p className="mt-2 max-w-[22rem] text-base text-neutral-600">{step.description}</p>
-            </li>
+            </ScrollReveal>
           ))}
         </ol>
 

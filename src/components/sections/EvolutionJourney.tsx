@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 10 — JORNADA DE EVOLUÇÃO.
@@ -28,7 +29,7 @@ export function EvolutionJourney() {
       className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="jornada-titulo"
             className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
@@ -41,7 +42,7 @@ export function EvolutionJourney() {
             mais urgente. Quando sua equipe estiver pronta, o Zapbox ganha novas capacidades — sem
             obrigar sua empresa a trocar toda a operação.
           </p>
-        </div>
+        </ScrollReveal>
 
         <ol className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-6 lg:gap-4">
           {/* Linha conectora: só no desktop, entre o primeiro e o último marcador. */}
@@ -55,8 +56,10 @@ export function EvolutionJourney() {
             const isEntryPoint = index === 0;
 
             return (
-              <li
+              <ScrollReveal
                 key={stage.name}
+                as="li"
+                delay={index * 70}
                 className="relative flex flex-col lg:items-center lg:text-center"
               >
                 <span
@@ -80,7 +83,7 @@ export function EvolutionJourney() {
                   {stage.name}
                 </h3>
                 <p className="mt-1 text-sm text-neutral-600">{stage.solution}</p>
-              </li>
+              </ScrollReveal>
             );
           })}
         </ol>

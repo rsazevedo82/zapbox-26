@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 2 — DOR / PROBLEMA.
@@ -28,7 +29,7 @@ export function ProblemSection() {
       className="surface-noise bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="problema-titulo"
             className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
@@ -40,12 +41,14 @@ export function ProblemSection() {
             Quando o WhatsApp cresce sem processo, a equipe perde produtividade e oportunidades
             começam a escapar — mesmo que ninguém tenha feito nada errado.
           </p>
-        </div>
+        </ScrollReveal>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
-          {PAIN_POINTS.map((point) => (
-            <li
+          {PAIN_POINTS.map((point, i) => (
+            <ScrollReveal
               key={point}
+              as="li"
+              delay={Math.min(i, 4) * 70}
               className={cn(
                 "card-surface card-lift relative flex items-start gap-3 overflow-hidden rounded-xl p-6",
                 // Filete vermelho na lateral: marca o card como um problema.
@@ -54,7 +57,7 @@ export function ProblemSection() {
             >
               <AlertIcon />
               <span className="text-base text-neutral-700">{point}</span>
-            </li>
+            </ScrollReveal>
           ))}
         </ul>
       </div>

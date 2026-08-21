@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 11 — MÓDULOS ADICIONAIS.
@@ -58,19 +59,21 @@ export function AdditionalModules() {
       className="surface-noise bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="modulos-titulo"
             className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
           >
             Adicione novos recursos conforme sua operação cresce
           </h2>
-        </div>
+        </ScrollReveal>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {MODULES.map((module) => (
-            <li
+          {MODULES.map((module, i) => (
+            <ScrollReveal
               key={module.name}
+              as="li"
+              delay={i * 70}
               className={cn("card-surface card-lift group flex flex-col rounded-xl p-5")}
             >
               <span className="bg-accent-50 text-accent-700 ring-accent-600/15 ease-fluid group-hover:from-accent-600 group-hover:to-accent-700 flex h-10 w-10 items-center justify-center rounded-xl ring-1 transition-colors duration-300 group-hover:bg-gradient-to-b group-hover:text-white">
@@ -80,7 +83,7 @@ export function AdditionalModules() {
               <h3 className="text-primary-950 mt-4 text-base font-semibold">{module.name}</h3>
               <p className="text-primary-800 mt-1 text-sm font-medium">{module.tagline}</p>
               <p className="mt-2 text-sm text-neutral-600">{module.description}</p>
-            </li>
+            </ScrollReveal>
           ))}
         </ul>
 

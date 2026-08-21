@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 15 — CTA FINAL.
@@ -28,7 +29,7 @@ export function FinalCTA() {
       <div className="container">
         <div className="mx-auto grid max-w-[56rem] items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Bloco esquerdo — Produto (primeiro também no mobile) */}
-          <div className={BLOCK_STYLES}>
+          <ScrollReveal className={BLOCK_STYLES}>
             <h2 className="text-shine text-2xl font-bold text-balance sm:text-3xl">
               Quer organizar seu WhatsApp agora?
             </h2>
@@ -40,10 +41,10 @@ export function FinalCTA() {
                 Escolher meu plano
               </Button>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Bloco direito — Soluções */}
-          <div className={BLOCK_STYLES}>
+          <ScrollReveal delay={110} className={BLOCK_STYLES}>
             <h2 className="text-shine text-2xl font-bold text-balance sm:text-3xl">
               Quer automatizar sua operação?
             </h2>
@@ -64,7 +65,7 @@ export function FinalCTA() {
                 Falar com especialista
               </SpecialistButton>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

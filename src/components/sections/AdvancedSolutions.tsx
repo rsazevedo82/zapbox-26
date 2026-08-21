@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 9 — SOLUÇÕES AVANÇADAS.
@@ -81,7 +82,7 @@ export function AdvancedSolutions() {
       className="surface-noise bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <p className="text-accent-700 text-sm font-semibold tracking-widest uppercase">
             Soluções avançadas
           </p>
@@ -92,11 +93,11 @@ export function AdvancedSolutions() {
           >
             Três formas de fazer sua operação ir além do atendimento
           </h2>
-        </div>
+        </ScrollReveal>
 
         <ul className="mt-12 grid items-stretch gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">
-          {SOLUTIONS.map((solution) => (
-            <li key={solution.id} className="flex">
+          {SOLUTIONS.map((solution, i) => (
+            <ScrollReveal key={solution.id} as="li" delay={i * 90} className="flex">
               <div
                 className={cn(
                   "group relative flex w-full flex-col overflow-hidden rounded-2xl p-6 lg:p-8",
@@ -111,7 +112,7 @@ export function AdvancedSolutions() {
                   {solution.icon}
                 </span>
 
-                <p className="text-accent-300 mt-5 text-xs font-semibold tracking-[0.16em] uppercase">
+                <p className="text-accent-300 mt-5 text-xs font-semibold tracking-[0.14em] uppercase">
                   {solution.name}
                 </p>
 
@@ -141,7 +142,7 @@ export function AdvancedSolutions() {
                   {solution.ctaLabel}
                 </SpecialistButton>
               </div>
-            </li>
+            </ScrollReveal>
           ))}
         </ul>
 

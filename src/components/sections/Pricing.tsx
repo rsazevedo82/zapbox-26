@@ -2,6 +2,7 @@ import { LeadFormButton } from "@/components/ui/LeadFormButton";
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { PLANS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 8 — PLANOS DO ZAPBOX SOFTWARE.
@@ -44,7 +45,7 @@ export function Pricing() {
       className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <p className="text-accent-700 text-sm font-semibold tracking-widest uppercase">
             Zapbox Software
           </p>
@@ -59,14 +60,14 @@ export function Pricing() {
           <p className="mt-6 text-base text-neutral-600 sm:text-lg">
             Comece com o que sua operação precisa hoje. Você pode evoluir depois.
           </p>
-        </div>
+        </ScrollReveal>
 
         <ul className="mt-12 grid items-stretch gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">
           {PLANS.map((plan) => {
             const copy = PLAN_COPY[plan.id];
 
             return (
-              <li key={plan.id} className="flex">
+              <ScrollReveal key={plan.id} as="li" delay={plan.highlight ? 0 : 120} className="flex">
                 <div
                   className={cn(
                     "card-surface relative flex w-full flex-col rounded-2xl p-6 lg:p-8",
@@ -81,7 +82,7 @@ export function Pricing() {
                       className={cn(
                         "from-accent-600 to-accent-700 glow-accent absolute -top-3 left-1/2 -translate-x-1/2",
                         "-translate-x-1/2 bg-gradient-to-b shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]",
-                        "rounded-full px-3.5 py-1 text-[0.7rem] font-semibold tracking-[0.12em] text-white uppercase"
+                        "rounded-full px-3.5 py-1 text-[0.7rem] font-semibold tracking-[0.14em] text-white uppercase"
                       )}
                     >
                       Mais escolhido
@@ -128,12 +129,12 @@ export function Pricing() {
                     {copy?.ctaLabel ?? "Começar agora"}
                   </LeadFormButton>
                 </div>
-              </li>
+              </ScrollReveal>
             );
           })}
         </ul>
 
-        <div className="mx-auto mt-12 max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto mt-12 max-w-[46rem] text-center">
           <p className="text-sm text-neutral-600">
             Nenhum plano inclui CRM, automações personalizadas ou inteligência artificial — essas
             soluções vêm depois, quando sua operação estiver pronta para elas.
@@ -150,7 +151,7 @@ export function Pricing() {
               Falar com especialista
             </SpecialistButton>
           </p>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

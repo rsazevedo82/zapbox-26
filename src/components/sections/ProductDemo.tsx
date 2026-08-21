@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 5 — PRODUTO EM AÇÃO.
@@ -33,7 +34,7 @@ export function ProductDemo() {
       className="surface-beam bg-primary-950 relative overflow-hidden py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="produto-titulo"
             className="text-shine text-3xl font-bold tracking-tight text-balance sm:text-4xl"
@@ -50,13 +51,18 @@ export function ProductDemo() {
             status, o responsável marcado em cada uma, as tags que classificam o tipo de atendimento
             e a busca que encontra qualquer conversa em segundos.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/*
           Palco do produto: halo por trás, moldura dupla (bandeja de vidro +
           núcleo) com raios concêntricos, e um reflexo desbotado abaixo.
         */}
-        <div className="relative mx-auto mt-14 max-w-[64rem]">
+        <ScrollReveal
+          delay={120}
+          distance="2.5rem"
+          duration={780}
+          className="relative mx-auto mt-14 max-w-[64rem]"
+        >
           <div
             aria-hidden="true"
             className="bg-accent-600/20 absolute inset-x-8 -top-6 h-24 rounded-full blur-3xl"
@@ -94,7 +100,7 @@ export function ProductDemo() {
               className="w-full -scale-y-100 blur-[1px]"
             />
           </div>
-        </div>
+        </ScrollReveal>
 
         <ul className="mx-auto mt-32 flex max-w-[56rem] flex-wrap justify-center gap-3 sm:mt-36">
           {HIGHLIGHTS.map((highlight) => (

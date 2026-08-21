@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 /**
  * Seção 14 — FAQ.
@@ -80,14 +81,14 @@ export function FAQ() {
       className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
-        <div className="mx-auto max-w-[46rem] text-center">
+        <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="faq-titulo"
             className="text-primary-950 text-3xl font-bold tracking-tight sm:text-4xl"
           >
             Perguntas frequentes
           </h2>
-        </div>
+        </ScrollReveal>
 
         <ul className="card-surface mx-auto mt-12 max-w-[46rem] divide-y divide-neutral-200/80 overflow-hidden rounded-2xl px-5 sm:px-7">
           {FAQ_ITEMS.map((item, index) => {
