@@ -78,7 +78,7 @@ export function AdvancedSolutions() {
     <section
       id="solucoes-avancadas"
       aria-labelledby="solucoes-avancadas-titulo"
-      className="bg-surface py-16 lg:py-24"
+      className="surface-noise bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
@@ -99,30 +99,33 @@ export function AdvancedSolutions() {
             <li key={solution.id} className="flex">
               <div
                 className={cn(
-                  "flex w-full flex-col rounded-lg p-6 lg:p-8",
-                  "from-surface to-primary-50/60 bg-gradient-to-b",
-                  "ring-primary-100 ring-1"
+                  "group relative flex w-full flex-col overflow-hidden rounded-2xl p-6 lg:p-8",
+                  "from-primary-950 to-primary-900 bg-gradient-to-b",
+                  "ease-fluid ring-1 ring-white/10 transition-shadow duration-300",
+                  "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.08),0_18px_44px_-24px_rgb(0_33_54/0.55)]",
+                  "hover:ring-accent-500/40 hover:shadow-[inset_0_1px_0_0_rgb(255_255_255/0.12),0_26px_60px_-24px_rgb(0_153_95/0.45)]",
+                  "motion-safe:transition-transform motion-safe:hover:-translate-y-1"
                 )}
               >
-                <span className="bg-primary-950 text-accent-400 flex h-12 w-12 items-center justify-center rounded-lg">
+                <span className="glass-panel text-accent-300 relative flex h-12 w-12 items-center justify-center rounded-xl">
                   {solution.icon}
                 </span>
 
-                <p className="text-accent-700 mt-5 text-sm font-semibold tracking-wide uppercase">
+                <p className="text-accent-300 mt-5 text-xs font-semibold tracking-[0.16em] uppercase">
                   {solution.name}
                 </p>
 
-                <h3 className="text-primary-950 mt-2 text-xl font-bold text-balance">
+                <h3 className="mt-2 text-xl font-bold text-balance text-white">
                   {solution.headline}
                 </h3>
 
-                <p className="mt-3 text-base text-neutral-600">{solution.text}</p>
+                <p className="text-primary-200 mt-3 text-base">{solution.text}</p>
 
-                <ul className="mt-6 flex flex-col gap-2.5 border-t border-neutral-200 pt-6">
+                <ul className="mt-6 flex flex-col gap-2.5 border-t border-white/10 pt-6">
                   {solution.benefits.map((benefit) => (
                     <li key={benefit} className="flex items-start gap-2.5">
                       <CheckIcon />
-                      <span className="text-sm text-neutral-700">{benefit}</span>
+                      <span className="text-primary-100 text-sm">{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -131,7 +134,7 @@ export function AdvancedSolutions() {
 
                 <SpecialistButton
                   sourceCta={`advanced-solutions-${solution.id}`}
-                  variant="outline"
+                  variant="secondary"
                   size="md"
                   className="w-full"
                 >
@@ -213,7 +216,7 @@ function CheckIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className="text-accent-600 mt-0.5 shrink-0"
+      className="text-accent-400 mt-0.5 shrink-0"
     >
       <path d="M4 10.5l4 4 8-9" />
     </svg>

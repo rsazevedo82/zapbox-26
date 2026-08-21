@@ -54,7 +54,11 @@ const FEATURES: Feature[] = [
 
 export function Features() {
   return (
-    <section id="solucoes" aria-labelledby="solucoes-titulo" className="bg-surface py-16 lg:py-24">
+    <section
+      id="solucoes"
+      aria-labelledby="solucoes-titulo"
+      className="surface-noise bg-surface relative py-20 lg:py-28"
+    >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
           <h2
@@ -69,17 +73,13 @@ export function Features() {
           {FEATURES.map((feature) => (
             <li
               key={feature.title}
-              className={cn(
-                "bg-surface flex flex-col rounded-lg p-6",
-                "ring-1 ring-neutral-200",
-                "transition-shadow duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5",
-                "motion-safe:transition-[box-shadow,transform]"
-              )}
+              className={cn("card-surface card-lift group flex flex-col rounded-xl p-6")}
             >
               <span
                 className={cn(
-                  "bg-accent-50 text-accent-700 flex h-11 w-11 items-center justify-center",
-                  "rounded-lg"
+                  "bg-accent-50 text-accent-700 ring-accent-600/15 flex h-11 w-11 items-center justify-center",
+                  "ease-fluid rounded-xl shadow-[inset_0_1px_0_0_rgb(255_255_255/0.7)] ring-1 transition-colors duration-300",
+                  "group-hover:from-accent-600 group-hover:to-accent-700 group-hover:bg-gradient-to-b group-hover:text-white"
                 )}
               >
                 {feature.icon}

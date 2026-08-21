@@ -118,9 +118,14 @@
   --text-6xl: 3.75rem;
   --text-6xl--line-height: 1.1;
 
-  /* ---------- Animações ---------- */
+  /* ---------- Movimento ---------- */
+  /* Curva única do projeto: sai rápido e assenta devagar, dando peso físico
+     ao movimento. Substitui o ease-out padrão em hovers e transições. */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+
   /* Usadas com o prefixo `motion-safe:` para respeitar prefers-reduced-motion. */
-  --animate-consent-in: consent-in 220ms ease-out;
+  --animate-consent-in: consent-in 220ms var(--ease-fluid);
+  --animate-node-pulse: node-pulse 3.2s ease-in-out infinite;
 
   @keyframes consent-in {
     from {
@@ -130,6 +135,17 @@
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  /* Respiro do marcador ativo da jornada. */
+  @keyframes node-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(0 153 95 / 0.45);
+    }
+    50% {
+      box-shadow: 0 0 0 0.5rem rgb(0 153 95 / 0);
     }
   }
 }
@@ -153,6 +169,143 @@
   @variant lg {
     padding-inline: 2rem; /* desktop: 32px */
   }
+}
+
+/* ============================================================================
+   UTILITÁRIOS VISUAIS
+
+   O elemento-assinatura do site é o FEIXE (.surface-beam): uma luz que desce
+   do topo das seções escuras. Ele existe porque o símbolo da Zapbox é uma
+   caixa que se abre para cima com um check — o feixe é essa abertura virando
+   ambiente. É o único efeito "ousado" do projeto; todo o resto é contido.
+   ========================================================================== */
+
+/* Feixe de luz + halo verde deslocado do centro, para criar assimetria. */
+@utility surface-beam {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(60rem 32rem at 68% -10%, rgb(0 153 95 / 0.22), transparent 60%),
+      radial-gradient(44rem 26rem at 12% 8%, rgb(43 91 131 / 0.28), transparent 62%),
+      conic-gradient(
+        from 180deg at 50% -20%,
+        transparent 42%,
+        rgb(255 255 255 / 0.05) 50%,
+        transparent 58%
+      );
+  }
+}
+
+/* Malha de pontos que desvanece nas bordas — nunca uniforme na seção inteira. */
+@utility grid-fade {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgb(255 255 255 / 0.08) 1px,
+      transparent 0
+    );
+    background-size: 32px 32px;
+    mask-image: radial-gradient(60% 55% at 50% 0%, #000 20%, transparent 75%);
+  }
+}
+
+/* Textura de ruído quase imperceptível para superfícies claras. */
+@utility surface-noise {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.55;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+}
+
+/* Painel de vidro para superfícies escuras. */
+@utility glass-panel {
+  background-color: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.08);
+}
+
+/* Cartão claro: hairline em vez de borda cinza, mais brilho interno no topo. */
+@utility card-surface {
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff,
+    color-mix(in srgb, var(--color-primary-50) 45%, #ffffff)
+  );
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.9),
+    0 1px 2px 0 rgb(0 33 54 / 0.04),
+    0 8px 24px -12px rgb(0 33 54 / 0.12);
+  outline: 1px solid rgb(0 33 54 / 0.07);
+  outline-offset: -1px;
+  transition:
+    box-shadow 320ms var(--ease-fluid),
+    outline-color 320ms var(--ease-fluid),
+    transform 320ms var(--ease-fluid);
+}
+
+/* Elevação no hover — a borda acende em accent e a sombra se espalha. */
+@utility card-lift {
+  &:hover {
+    outline-color: rgb(0 153 95 / 0.35);
+    box-shadow:
+      inset 0 1px 0 0 rgb(255 255 255 / 0.9),
+      0 2px 4px 0 rgb(0 33 54 / 0.04),
+      0 18px 40px -16px rgb(0 33 54 / 0.22);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+/* Sombra colorida e difusa para o CTA principal. */
+@utility glow-accent {
+  box-shadow:
+    0 1px 2px 0 rgb(0 33 54 / 0.12),
+    0 10px 30px -10px rgb(0 122 77 / 0.55);
+}
+
+@utility glow-accent-strong {
+  box-shadow:
+    0 1px 2px 0 rgb(0 33 54 / 0.12),
+    0 16px 44px -12px rgb(0 153 95 / 0.7);
+}
+
+/* Texto com leve degradê — reservado a headlines de seções escuras. */
+@utility text-shine {
+  background-image: linear-gradient(to bottom, #ffffff 40%, var(--color-primary-200));
+  background-clip: text;
+  color: transparent;
+}
+
+/* Régua fina com degradê, para separar blocos sem uma borda dura. */
+@utility rule-gradient {
+  height: 1px;
+  border: 0;
+  background-image: linear-gradient(to right, transparent, rgb(0 153 95 / 0.5), transparent);
 }
 
 /* ---------- Base ---------- */

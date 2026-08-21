@@ -14,18 +14,22 @@ import { cn } from "@/lib/utils";
  */
 
 const BLOCK_STYLES = cn(
-  "flex flex-col rounded-lg border border-white/15 bg-white/5 p-8 lg:p-10",
-  "text-center"
+  "glass-panel ease-fluid flex flex-col rounded-2xl p-8 text-center transition-colors duration-300 lg:p-10",
+  "hover:border-white/25 hover:bg-white/10"
 );
 
 export function FinalCTA() {
   return (
-    <section id="contato" aria-label="Próximos passos" className="bg-primary-950 py-20 lg:py-32">
+    <section
+      id="contato"
+      aria-label="Próximos passos"
+      className="surface-beam grid-fade bg-primary-950 relative overflow-hidden py-24 lg:py-36"
+    >
       <div className="container">
         <div className="mx-auto grid max-w-[56rem] items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Bloco esquerdo — Produto (primeiro também no mobile) */}
           <div className={BLOCK_STYLES}>
-            <h2 className="text-2xl font-bold text-balance text-white sm:text-3xl">
+            <h2 className="text-shine text-2xl font-bold text-balance sm:text-3xl">
               Quer organizar seu WhatsApp agora?
             </h2>
 
@@ -40,7 +44,7 @@ export function FinalCTA() {
 
           {/* Bloco direito — Soluções */}
           <div className={BLOCK_STYLES}>
-            <h2 className="text-2xl font-bold text-balance text-white sm:text-3xl">
+            <h2 className="text-shine text-2xl font-bold text-balance sm:text-3xl">
               Quer automatizar sua operação?
             </h2>
 

@@ -74,7 +74,11 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" aria-labelledby="faq-titulo" className="bg-surface-muted py-16 lg:py-24">
+    <section
+      id="faq"
+      aria-labelledby="faq-titulo"
+      className="surface-noise bg-surface-muted relative py-20 lg:py-28"
+    >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
           <h2
@@ -85,7 +89,7 @@ export function FAQ() {
           </h2>
         </div>
 
-        <ul className="mx-auto mt-12 max-w-[46rem] divide-y divide-neutral-200 border-y border-neutral-200">
+        <ul className="card-surface mx-auto mt-12 max-w-[46rem] divide-y divide-neutral-200/80 overflow-hidden rounded-2xl px-5 sm:px-7">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
             const panelId = `faq-painel-${index}`;
@@ -103,7 +107,7 @@ export function FAQ() {
                     className={cn(
                       "flex w-full items-start justify-between gap-4 py-5 text-left",
                       "text-primary-950 text-base font-semibold sm:text-lg",
-                      "hover:text-accent-700 transition-colors",
+                      "hover:text-accent-700 ease-fluid transition-colors duration-200",
                       "focus-visible:outline-accent-500 focus-visible:outline-2 focus-visible:outline-offset-2"
                     )}
                   >
@@ -152,7 +156,7 @@ function ChevronIcon({ open }: { open: boolean }) {
       strokeLinejoin="round"
       aria-hidden="true"
       className={cn(
-        "text-accent-600 mt-1 shrink-0 transition-transform duration-200",
+        "text-accent-600 ease-fluid mt-1 shrink-0 transition-transform duration-300",
         open && "rotate-180"
       )}
     >

@@ -25,7 +25,7 @@ export function EvolutionJourney() {
     <section
       id="jornada"
       aria-labelledby="jornada-titulo"
-      className="bg-surface-muted py-16 lg:py-24"
+      className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
@@ -45,9 +45,10 @@ export function EvolutionJourney() {
 
         <ol className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-6 lg:gap-4">
           {/* Linha conectora: só no desktop, entre o primeiro e o último marcador. */}
+          {/* A linha nasce accent na etapa de entrada e esmaece ao avançar. */}
           <span
             aria-hidden="true"
-            className="absolute top-5 right-[8.33%] left-[8.33%] hidden border-t border-dashed border-neutral-300 lg:block"
+            className="from-accent-500/60 absolute top-5 right-[8.33%] left-[8.33%] hidden h-px bg-gradient-to-r via-neutral-300 to-neutral-200 lg:block"
           />
 
           {STAGES.map((stage, index) => {
@@ -63,7 +64,7 @@ export function EvolutionJourney() {
                     "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
                     "ring-surface-muted text-sm font-bold ring-8",
                     isEntryPoint
-                      ? "bg-accent-600 text-white"
+                      ? "from-accent-600 to-accent-700 glow-accent motion-safe:animate-node-pulse bg-gradient-to-b text-white shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]"
                       : "bg-surface text-primary-700 ring-surface-muted border border-neutral-300"
                   )}
                 >

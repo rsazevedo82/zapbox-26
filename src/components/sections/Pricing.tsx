@@ -41,7 +41,7 @@ export function Pricing() {
     <section
       id="planos"
       aria-labelledby="planos-titulo"
-      className="bg-surface-muted py-16 lg:py-24"
+      className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
@@ -69,17 +69,19 @@ export function Pricing() {
               <li key={plan.id} className="flex">
                 <div
                   className={cn(
-                    "bg-surface flex w-full flex-col rounded-lg p-6 lg:p-8",
+                    "card-surface relative flex w-full flex-col rounded-2xl p-6 lg:p-8",
                     plan.highlight
-                      ? "ring-accent-600 relative ring-2 lg:-my-2 lg:py-10"
-                      : "ring-1 ring-neutral-200"
+                      ? // Destaque: contorno accent, sombra colorida e leve elevação.
+                        "outline-accent-600/60 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.9),0_24px_60px_-24px_rgb(0_153_95/0.45)] outline-2 lg:-my-3 lg:py-11"
+                      : "card-lift"
                   )}
                 >
                   {plan.highlight && (
                     <span
                       className={cn(
-                        "bg-accent-600 absolute -top-3 left-1/2 -translate-x-1/2",
-                        "rounded-full px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase"
+                        "from-accent-600 to-accent-700 glow-accent absolute -top-3 left-1/2 -translate-x-1/2",
+                        "-translate-x-1/2 bg-gradient-to-b shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]",
+                        "rounded-full px-3.5 py-1 text-[0.7rem] font-semibold tracking-[0.12em] text-white uppercase"
                       )}
                     >
                       Mais escolhido
@@ -89,8 +91,8 @@ export function Pricing() {
                   <h3 className="text-primary-950 text-xl font-bold">{plan.name}</h3>
 
                   <p className="mt-4 flex items-baseline gap-1">
-                    <span className="text-primary-950 text-lg font-medium">R$</span>
-                    <span className="text-primary-950 text-4xl font-bold tracking-tight">
+                    <span className="text-primary-700 text-lg font-medium">R$</span>
+                    <span className="text-primary-950 text-5xl font-bold tracking-tight">
                       {formatPrice(plan.price)}
                     </span>
                     <span className="text-base text-neutral-600">/{plan.period}</span>
@@ -104,7 +106,7 @@ export function Pricing() {
                     </p>
                   )}
 
-                  <ul className="mt-6 flex flex-col gap-3 border-t border-neutral-200 pt-6">
+                  <ul className="mt-6 flex flex-col gap-3 border-t border-neutral-200/80 pt-6">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2.5">
                         <CheckIcon />

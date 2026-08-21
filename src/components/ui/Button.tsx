@@ -18,19 +18,29 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 const BASE_STYLES = cn(
   "inline-flex items-center justify-center gap-2 rounded-lg font-semibold",
-  "transition-colors duration-150 ease-out",
+  // Curva --ease-fluid: dá peso ao movimento em vez do ease-out padrão.
+  "transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-fluid",
   "focus-visible:outline-2 focus-visible:outline-offset-2",
-  "disabled:cursor-not-allowed disabled:opacity-60"
+  "motion-safe:active:translate-y-px",
+  "disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none"
 );
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
   // Ação principal de conversão.
   // accent-700 (não accent-600): branco sobre #00995F dá 3,67:1, abaixo do
   // mínimo AA de 4,5:1. Sobre accent-700 o contraste sobe para 5,40:1.
-  primary: cn("bg-accent-700 text-white hover:bg-accent-800", "focus-visible:outline-accent-400"),
+  // Degradê curto + brilho interno no topo dão volume; a sombra é verde e
+  // difusa, não cinza-escura, para o botão parecer emitir luz própria.
+  primary: cn(
+    "bg-accent-700 bg-gradient-to-b from-accent-600 to-accent-700 text-white",
+    "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.18)] glow-accent",
+    "hover:from-accent-700 hover:to-accent-800 hover:glow-accent-strong",
+    "focus-visible:outline-accent-400"
+  ),
   // Pensada para superfícies escuras (hero sobre primary-950).
   secondary: cn(
-    "border border-white/30 bg-transparent text-white hover:bg-white/10",
+    "glass-panel text-white",
+    "hover:border-white/30 hover:bg-white/12",
     "focus-visible:outline-white"
   ),
   // Ação discreta em superfícies claras (header).
@@ -40,8 +50,8 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
   ),
   // Ação secundária em superfícies claras: preenche no hover.
   outline: cn(
-    "border border-accent-600 bg-transparent text-accent-700",
-    "hover:bg-accent-600 hover:text-white",
+    "border border-accent-600/40 bg-accent-50/40 text-accent-700",
+    "hover:border-accent-600 hover:bg-accent-600 hover:text-white hover:glow-accent",
     "focus-visible:outline-accent-500"
   ),
 };

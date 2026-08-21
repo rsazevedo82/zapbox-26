@@ -38,7 +38,7 @@ export function HowItWorks() {
     <section
       id="como-funciona"
       aria-labelledby="como-funciona-titulo"
-      className="bg-surface-muted py-16 lg:py-24"
+      className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
@@ -55,18 +55,19 @@ export function HowItWorks() {
             Linha conectora da timeline: apenas no desktop, atrás dos números.
             Recuada em 1/8 de cada lado para começar e terminar nos badges das pontas.
           */}
+          {/* Conector com degradê: mais forte no início, some nas pontas. */}
           <span
             aria-hidden="true"
-            className="absolute top-6 right-[12.5%] left-[12.5%] hidden border-t border-dashed border-neutral-300 lg:block"
+            className="via-accent-500/45 absolute top-6 right-[12.5%] left-[12.5%] hidden h-px bg-gradient-to-r from-transparent to-transparent lg:block"
           />
 
           {STEPS.map((step, index) => (
             <li key={step.title} className="relative flex flex-col lg:items-center lg:text-center">
               <span
                 className={cn(
-                  "bg-accent-600 flex h-12 w-12 shrink-0 items-center justify-center",
-                  "rounded-full text-lg font-bold text-white",
-                  "ring-surface-muted ring-8"
+                  "from-accent-600 to-accent-700 flex h-12 w-12 shrink-0 items-center justify-center bg-gradient-to-b",
+                  "rounded-full text-lg font-bold text-white shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]",
+                  "glow-accent ring-surface-muted ring-8"
                 )}
               >
                 {index + 1}

@@ -52,7 +52,11 @@ const MODULES: Module[] = [
 
 export function AdditionalModules() {
   return (
-    <section id="modulos" aria-labelledby="modulos-titulo" className="bg-surface py-16 lg:py-24">
+    <section
+      id="modulos"
+      aria-labelledby="modulos-titulo"
+      className="surface-noise bg-surface relative py-20 lg:py-28"
+    >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
           <h2
@@ -67,14 +71,9 @@ export function AdditionalModules() {
           {MODULES.map((module) => (
             <li
               key={module.name}
-              className={cn(
-                "bg-surface-muted flex flex-col rounded-lg p-5",
-                "ring-1 ring-neutral-200/70",
-                "transition-shadow duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5",
-                "motion-safe:transition-[box-shadow,transform]"
-              )}
+              className={cn("card-surface card-lift group flex flex-col rounded-xl p-5")}
             >
-              <span className="bg-accent-50 text-accent-700 flex h-10 w-10 items-center justify-center rounded-lg">
+              <span className="bg-accent-50 text-accent-700 ring-accent-600/15 ease-fluid group-hover:from-accent-600 group-hover:to-accent-700 flex h-10 w-10 items-center justify-center rounded-xl ring-1 transition-colors duration-300 group-hover:bg-gradient-to-b group-hover:text-white">
                 {module.icon}
               </span>
 

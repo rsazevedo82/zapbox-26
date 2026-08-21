@@ -41,7 +41,11 @@ const PILLARS: Pillar[] = [
 
 export function ThreePillars() {
   return (
-    <section id="pilares" aria-labelledby="pilares-titulo" className="bg-surface py-16 lg:py-24">
+    <section
+      id="pilares"
+      aria-labelledby="pilares-titulo"
+      className="surface-noise bg-surface relative py-20 lg:py-28"
+    >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
           <p className="text-accent-700 text-sm font-semibold tracking-widest uppercase">
@@ -56,13 +60,16 @@ export function ThreePillars() {
           </h2>
         </div>
 
-        <ul className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-3 lg:gap-12">
+        <ul className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">
           {PILLARS.map((pillar) => (
-            <li key={pillar.title} className="flex flex-col">
+            <li
+              key={pillar.title}
+              className="card-surface card-lift flex flex-col rounded-xl p-6 lg:p-8"
+            >
               <span
                 className={cn(
-                  "bg-accent-50 text-accent-700 flex h-12 w-12 items-center justify-center",
-                  "rounded-lg"
+                  "from-accent-600 to-accent-700 text-white shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]",
+                  "glow-accent flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-b"
                 )}
               >
                 {pillar.icon}

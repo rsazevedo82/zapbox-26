@@ -29,7 +29,7 @@ const SOCIAL_LINKS = [
 // do WCAG 2.5.8 (AA). O gap das listas cai de 3 para 1 para compensar e o
 // espaçamento visual entre os textos fica idêntico ao anterior.
 const LINK_STYLES = cn(
-  "text-primary-300 inline-block py-1 text-sm transition-colors hover:text-accent-400",
+  "text-primary-300 ease-fluid inline-block py-1 text-sm transition-colors duration-200 hover:text-accent-300",
   "rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400"
 );
 
@@ -38,7 +38,9 @@ export function Footer() {
   const hasContact = SITE_CONFIG.contactEmail !== "" || SITE_CONFIG.whatsappNumber !== "";
 
   return (
-    <footer className="bg-primary-950 border-t border-white/10">
+    <footer className="bg-primary-950 relative">
+      {/* Régua de luz separando o CTA final do rodapé. */}
+      <div aria-hidden="true" className="rule-gradient absolute inset-x-0 top-0" />
       <div className="container py-12 lg:py-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between lg:gap-16">
           {/* Marca */}

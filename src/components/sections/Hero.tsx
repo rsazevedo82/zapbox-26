@@ -24,26 +24,15 @@ export function Hero() {
     <section
       aria-labelledby="hero-titulo"
       className={cn(
-        "relative isolate overflow-hidden",
+        "surface-beam grid-fade relative overflow-hidden",
         "from-primary-950 via-primary-950 to-primary-900 bg-gradient-to-b",
         "pt-16 lg:pt-20"
       )}
     >
-      {/* Malha decorativa sutil — não compete com o texto. */}
+      {/* Linha de luz que fecha a seção e emenda com a próxima. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
-        style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute -top-32 left-1/2 -z-10 h-[32rem] w-[32rem]",
-          "bg-accent-600/20 -translate-x-1/2 rounded-full blur-3xl"
-        )}
+        className="via-accent-500/40 absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent"
       />
 
       <div className="container flex min-h-[calc(100dvh-4rem)] flex-col justify-center py-16 lg:min-h-[calc(100dvh-5rem)] lg:py-24">
@@ -51,18 +40,28 @@ export function Hero() {
           {/* Eyebrow */}
           <p
             className={cn(
-              "inline-flex items-center rounded-full border border-white/20 bg-white/5",
-              "text-primary-100 px-4 py-1.5 text-sm font-medium"
+              "glass-panel inline-flex items-start gap-2 rounded-full",
+              "text-primary-100 px-4 py-1.5 text-xs font-medium tracking-[0.14em] uppercase"
             )}
           >
+            <span
+              aria-hidden="true"
+              className="bg-accent-400 mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-full"
+            />
             Plataforma de atendimento e vendas pelo WhatsApp
           </p>
 
           <h1
             id="hero-titulo"
-            className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className={cn(
+              "text-shine mt-7 text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl",
+              "[text-wrap:balance]"
+            )}
           >
-            Transforme seu WhatsApp em uma operação organizada
+            Transforme seu WhatsApp em uma{" "}
+            <span className="from-accent-300 to-accent-500 bg-gradient-to-b bg-clip-text text-transparent">
+              operação organizada
+            </span>
           </h1>
 
           <p className="text-primary-200 mt-6 max-w-[42rem] text-base sm:text-lg lg:text-xl">
@@ -101,9 +100,15 @@ export function Hero() {
           </p>
 
           {/* Microbenefícios */}
-          <ul className="mt-12 grid w-full gap-x-8 gap-y-3 text-left sm:grid-cols-2">
+          <ul className="mt-14 grid w-full gap-3 text-left sm:grid-cols-2">
             {MICRO_BENEFITS.map((benefit) => (
-              <li key={benefit} className="text-primary-100 flex items-start gap-3 text-sm">
+              <li
+                key={benefit}
+                className={cn(
+                  "glass-panel text-primary-100 flex items-start gap-3 rounded-lg px-4 py-3 text-sm",
+                  "ease-fluid transition-colors duration-300 hover:border-white/25 hover:bg-white/10"
+                )}
+              >
                 <CheckIcon />
                 <span>{benefit}</span>
               </li>

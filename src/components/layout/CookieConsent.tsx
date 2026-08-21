@@ -26,7 +26,7 @@ export function CookieConsent() {
       aria-label="Aviso de cookies"
       className={cn(
         "fixed inset-x-0 bottom-0 z-50",
-        "border-primary-800 bg-primary-950/95 border-t backdrop-blur",
+        "border-primary-800/60 bg-primary-950/90 border-t shadow-[0_-12px_40px_-16px_rgb(0_0_0/0.6)] backdrop-blur-xl",
         "motion-safe:animate-consent-in"
       )}
     >
@@ -56,8 +56,8 @@ export function CookieConsent() {
             type="button"
             onClick={() => writeConsent("denied")}
             className={cn(
-              "border-primary-600 text-primary-100 rounded-lg border px-4 py-2 text-sm font-medium",
-              "hover:border-primary-400 transition-colors hover:text-white",
+              "border-primary-600/70 text-primary-100 rounded-lg border px-4 py-2 text-sm font-medium",
+              "hover:border-primary-400 ease-fluid transition-colors duration-200 hover:bg-white/5 hover:text-white",
               "focus-visible:outline-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2"
             )}
           >
@@ -68,8 +68,8 @@ export function CookieConsent() {
             type="button"
             onClick={() => writeConsent("granted")}
             className={cn(
-              "bg-accent-600 rounded-lg px-5 py-2 text-sm font-semibold text-white",
-              "hover:bg-accent-700 transition-colors",
+              "from-accent-600 to-accent-700 glow-accent rounded-lg bg-gradient-to-b px-5 py-2 text-sm font-semibold text-white",
+              "hover:glow-accent-strong ease-fluid shadow-[inset_0_1px_0_0_rgb(255_255_255/0.2)] transition-shadow duration-200",
               "focus-visible:outline-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2"
             )}
           >

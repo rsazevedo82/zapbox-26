@@ -8,16 +8,24 @@
 
 export function NarrativeDivider() {
   return (
-    <section id="alem" aria-labelledby="alem-titulo" className="bg-primary-950 py-20 lg:py-32">
+    <section
+      id="alem"
+      aria-labelledby="alem-titulo"
+      className="surface-beam grid-fade bg-primary-950 relative overflow-hidden py-24 lg:py-40"
+    >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
-          <p className="text-accent-400 text-sm font-semibold tracking-widest uppercase">
+          <p className="glass-panel text-accent-300 inline-flex items-start gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-[0.16em] uppercase">
+            <span
+              aria-hidden="true"
+              className="bg-accent-400 mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-full"
+            />
             Zapbox pode ir além
           </p>
 
           <h2
             id="alem-titulo"
-            className="mt-4 text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl"
+            className="text-shine mt-6 text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
           >
             Precisa de mais do que organizar seu WhatsApp?
           </h2>

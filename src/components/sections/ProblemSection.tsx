@@ -22,7 +22,11 @@ const PAIN_POINTS = [
 
 export function ProblemSection() {
   return (
-    <section id="problema" aria-labelledby="problema-titulo" className="bg-surface py-16 lg:py-24">
+    <section
+      id="problema"
+      aria-labelledby="problema-titulo"
+      className="surface-noise bg-surface relative py-20 lg:py-28"
+    >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
           <h2
@@ -43,10 +47,9 @@ export function ProblemSection() {
             <li
               key={point}
               className={cn(
-                "bg-surface-muted flex items-start gap-3 rounded-lg p-6",
-                "ring-1 ring-neutral-200/70",
-                "transition-shadow duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5",
-                "motion-safe:transition-[box-shadow,transform]"
+                "card-surface card-lift relative flex items-start gap-3 overflow-hidden rounded-xl p-6",
+                // Filete vermelho na lateral: marca o card como um problema.
+                "before:bg-error-500/70 before:absolute before:inset-y-4 before:left-0 before:w-0.5 before:rounded-full"
               )}
             >
               <AlertIcon />

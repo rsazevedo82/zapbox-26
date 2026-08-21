@@ -30,13 +30,13 @@ export function ProductDemo() {
     <section
       id="produto"
       aria-labelledby="produto-titulo"
-      className="bg-primary-950 py-16 lg:py-24"
+      className="surface-beam bg-primary-950 relative overflow-hidden py-20 lg:py-28"
     >
       <div className="container">
         <div className="mx-auto max-w-[46rem] text-center">
           <h2
             id="produto-titulo"
-            className="text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl"
+            className="text-shine text-3xl font-bold tracking-tight text-balance sm:text-4xl"
           >
             Veja o Zapbox em ação
           </h2>
@@ -52,30 +52,57 @@ export function ProductDemo() {
           </p>
         </div>
 
-        <div
-          className={cn(
-            "mx-auto mt-12 max-w-[62.5rem] overflow-hidden rounded-lg",
-            "ring-primary-800 shadow-2xl ring-1"
-          )}
-        >
-          <Image
-            src="/images/zapbox-painel.webp"
-            alt="Painel de atendimento do Zapbox mostrando conversas, responsáveis e histórico"
-            width={3020}
-            height={1710}
-            sizes="(min-width: 1024px) 1000px, 100vw"
-            loading="lazy"
-            className="h-auto w-full"
+        {/*
+          Palco do produto: halo por trás, moldura dupla (bandeja de vidro +
+          núcleo) com raios concêntricos, e um reflexo desbotado abaixo.
+        */}
+        <div className="relative mx-auto mt-14 max-w-[64rem]">
+          <div
+            aria-hidden="true"
+            className="bg-accent-600/20 absolute inset-x-8 -top-6 h-24 rounded-full blur-3xl"
           />
+
+          <div className="glass-panel relative rounded-2xl p-1.5 shadow-2xl">
+            <div className="ring-primary-800/60 overflow-hidden rounded-[0.875rem] ring-1">
+              <Image
+                src="/images/zapbox-painel.webp"
+                alt="Painel de atendimento do Zapbox mostrando conversas, responsáveis e histórico"
+                width={3020}
+                height={1710}
+                sizes="(min-width: 1024px) 1000px, 100vw"
+                loading="lazy"
+                className="h-auto w-full"
+              />
+            </div>
+          </div>
+
+          {/* Reflexo: a mesma imagem espelhada, apagando para baixo. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-6 top-full hidden h-24 overflow-hidden opacity-25 sm:block"
+            style={{
+              maskImage: "linear-gradient(to bottom, rgb(0 0 0 / 0.55), transparent 70%)",
+            }}
+          >
+            <Image
+              src="/images/zapbox-painel.webp"
+              alt=""
+              width={3020}
+              height={1710}
+              sizes="1000px"
+              loading="lazy"
+              className="w-full -scale-y-100 blur-[1px]"
+            />
+          </div>
         </div>
 
-        <ul className="mx-auto mt-10 flex max-w-[56rem] flex-wrap justify-center gap-3">
+        <ul className="mx-auto mt-32 flex max-w-[56rem] flex-wrap justify-center gap-3 sm:mt-36">
           {HIGHLIGHTS.map((highlight) => (
             <li
               key={highlight}
               className={cn(
-                "flex items-center gap-2 rounded-full border border-white/15 bg-white/5",
-                "text-primary-100 px-4 py-2 text-sm"
+                "glass-panel text-primary-100 flex items-center gap-2 rounded-full px-4 py-2 text-sm",
+                "ease-fluid transition-colors duration-300 hover:border-white/25 hover:bg-white/10"
               )}
             >
               <CheckIcon />

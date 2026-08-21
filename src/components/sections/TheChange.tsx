@@ -17,7 +17,7 @@ export function TheChange() {
     <section
       id="a-mudanca"
       aria-labelledby="a-mudanca-titulo"
-      className="bg-surface-muted py-16 lg:py-24"
+      className="surface-noise bg-surface-muted relative py-20 lg:py-28"
     >
       <div className="container">
         <div className="mx-auto max-w-[45rem] text-center">
@@ -88,14 +88,18 @@ function StateCard({
   return (
     <div
       className={cn(
-        "bg-surface flex flex-col items-center gap-3 rounded-lg p-6 text-center",
-        tone === "accent" ? "ring-accent-600/30 ring-2" : "ring-1 ring-neutral-200"
+        "card-surface flex flex-col items-center gap-3 rounded-xl p-6 text-center",
+        tone === "accent"
+          ? "outline-accent-600/45 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.9),0_20px_48px_-20px_rgb(0_153_95/0.4)] outline-2"
+          : "opacity-90 grayscale-[0.35]"
       )}
     >
       <span
         className={cn(
           "flex h-12 w-12 items-center justify-center rounded-lg",
-          tone === "accent" ? "bg-accent-50 text-accent-700" : "bg-neutral-100 text-neutral-500"
+          tone === "accent"
+            ? "from-accent-600 to-accent-700 glow-accent bg-gradient-to-b text-white shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]"
+            : "bg-neutral-100 text-neutral-500"
         )}
       >
         {icon}
@@ -163,7 +167,7 @@ function ArrowIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className="text-accent-600 rotate-90 sm:rotate-0"
+      className="text-accent-600 rotate-90 motion-safe:animate-pulse sm:rotate-0"
     >
       <path d="M4 12h16" />
       <path d="m14 6 6 6-6 6" />
