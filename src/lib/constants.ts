@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
   contactEmail: "contato@rc2solucoes.com.br" as string,
   socialLinks: {
     instagram: "https://instagram.com/zapbox.cloud" as string,
-    linkedin: "" as string, // ainda não confirmado — fica oculto no footer
+    linkedin: "https://www.linkedin.com/company/rc2-solucoes" as string,
   },
 } as const;
 
