@@ -8,10 +8,11 @@ import type { LeadRecord } from "@/lib/validations";
 /**
  * Notificações internas por e-mail (Resend).
  *
- * O remetente usa o domínio de testes do Resend enquanto não houver um domínio
- * verificado da Zapbox. Trocar `FROM_ADDRESS` assim que o DNS estiver pronto.
+ * O remetente usa o domínio próprio da RC2. Ele só entrega se o domínio
+ * estiver verificado no Resend (Domains → Add Domain, com os registros
+ * SPF/DKIM no DNS); sem isso o envio falha e o lead fica apenas no Supabase.
  */
-const FROM_ADDRESS = "Zapbox Site <onboarding@resend.dev>";
+const FROM_ADDRESS = "Zapbox Site <site@rc2solucoes.com.br>";
 
 export type SendResult = { sent: true } | { sent: false; error: string };
 
