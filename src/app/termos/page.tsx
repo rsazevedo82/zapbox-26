@@ -16,8 +16,16 @@ export default function TermosPage() {
       <LegalSection title="1. Objeto">
         <LegalText>
           Estes termos regulam o uso do site {SITE_CONFIG.url.replace("https://", "")}, mantido pelo{" "}
-          {SITE_CONFIG.name}, operado por {SITE_CONFIG.company}, e o contato comercial iniciado por
-          meio dele.
+          {SITE_CONFIG.name}, operado por{" "}
+          <a
+            href="https://www.rc2solucoes.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-700 font-medium underline underline-offset-2"
+          >
+            {SITE_CONFIG.company}
+          </a>
+          , e o contato comercial iniciado por meio dele.
         </LegalText>
         <LegalText>
           O site tem finalidade informativa e de contato comercial. Ele apresenta a plataforma, os
@@ -62,8 +70,16 @@ export default function TermosPage() {
       <LegalSection title="4. Propriedade intelectual">
         <LegalText>
           A marca Zapbox, o logotipo, a identidade visual, os textos, as imagens, o código-fonte e
-          os demais elementos deste site pertencem a {SITE_CONFIG.company} ou a terceiros que
-          licenciaram seu uso, e são protegidos pela legislação brasileira.
+          os demais elementos deste site pertencem a{" "}
+          <a
+            href="https://www.rc2solucoes.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-700 font-medium underline underline-offset-2"
+          >
+            {SITE_CONFIG.company}
+          </a>{" "}
+          ou a terceiros que licenciaram seu uso, e são protegidos pela legislação brasileira.
         </LegalText>
         <LegalText>
           É vedada a reprodução, distribuição, modificação ou uso comercial de qualquer conteúdo

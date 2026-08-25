@@ -59,7 +59,17 @@ export function Footer() {
               />
             </Link>
 
-            <p className="mt-4 text-sm font-semibold text-white">Zapbox by {SITE_CONFIG.company}</p>
+            <p className="mt-4 text-sm font-semibold text-white">
+              Zapbox by{" "}
+              <a
+                href="https://www.rc2solucoes.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-primary-200"
+              >
+                {SITE_CONFIG.company}
+              </a>
+            </p>
             <p className="text-primary-300 mt-2 text-sm">{SITE_CONFIG.tagline}</p>
           </div>
 

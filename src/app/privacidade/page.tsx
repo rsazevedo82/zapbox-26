@@ -15,8 +15,16 @@ export default function PrivacidadePage() {
       <LegalSection title="1. Quem é o controlador dos seus dados">
         <LegalText>
           O controlador dos dados pessoais tratados neste site é o {SITE_CONFIG.name}, operado por{" "}
-          {SITE_CONFIG.company}, inscrita no CNPJ 10.604.725/0001-42 e com sede em Av. Nova
-          América, 202, Jardim Santa Cecília, CEP 07.123-250, Guarulhos — SP.
+          <a
+            href="https://www.rc2solucoes.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-700 font-medium underline underline-offset-2"
+          >
+            {SITE_CONFIG.company}
+          </a>
+          , inscrita no CNPJ 10.604.725/0001-42 e com sede em Av. Nova América, 202, Jardim Santa
+          Cecília, CEP 07.123-250, Guarulhos — SP.
         </LegalText>
         <LegalText>
           Encarregado pelo tratamento de dados (DPO):{" "}
