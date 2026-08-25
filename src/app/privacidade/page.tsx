@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 
-import {
-  LegalList,
-  LegalPage,
-  LegalSection,
-  LegalText,
-  Pending,
-} from "@/components/layout/LegalPage";
+import { LegalList, LegalPage, LegalSection, LegalText } from "@/components/layout/LegalPage";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -15,26 +9,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacidade" },
 };
 
-/**
- * Política de Privacidade — MODELO, não texto jurídico aprovado.
- *
- * A estrutura cobre os pontos exigidos pela LGPD e descreve exatamente o que o
- * site coleta hoje (ver `src/lib/validations.ts` e `src/app/api/leads/route.ts`)
- * e quais serviços de terceiros são efetivamente usados. Tudo que depende de
- * decisão da empresa está marcado com <Pending>.
- */
 export default function PrivacidadePage() {
   return (
-    <LegalPage title="Política de Privacidade" updatedAt="20 de agosto de 2026">
+    <LegalPage title="Política de Privacidade" updatedAt="25 de agosto de 2026">
       <LegalSection title="1. Quem é o controlador dos seus dados">
         <LegalText>
           O controlador dos dados pessoais tratados neste site é o {SITE_CONFIG.name}, operado por{" "}
-          {SITE_CONFIG.company}, inscrita no CNPJ <Pending>A PREENCHER — CNPJ</Pending> e com sede
-          em <Pending>A PREENCHER — ENDEREÇO COMPLETO</Pending>.
+          {SITE_CONFIG.company}, inscrita no CNPJ 10.604.725/0001-42 e com sede em Av. Nova
+          América, 202, Jardim Santa Cecília, CEP 07.123-250, Guarulhos — SP.
         </LegalText>
         <LegalText>
           Encarregado pelo tratamento de dados (DPO):{" "}
-          <Pending>A PREENCHER — NOME E CONTATO</Pending>.
+          <a
+            href="mailto:somos@rc2solucoes.com.br"
+            className="text-accent-700 font-medium underline underline-offset-2"
+          >
+            somos@rc2solucoes.com.br
+          </a>
+          .
         </LegalText>
       </LegalSection>
 
@@ -127,8 +119,7 @@ export default function PrivacidadePage() {
         />
         <LegalText>
           Alguns desses serviços podem processar dados fora do Brasil. A transferência internacional
-          ocorre nos termos do art. 33 da LGPD.{" "}
-          <Pending>REVISAR COM JURÍDICO — TRANSFERÊNCIA INTERNACIONAL</Pending>
+          ocorre nos termos do art. 33 da LGPD.
         </LegalText>
       </LegalSection>
 
@@ -159,9 +150,8 @@ export default function PrivacidadePage() {
       <LegalSection title="7. Por quanto tempo guardamos">
         <LegalText>
           Mantemos os dados de contato pelo período necessário ao atendimento comercial e ao
-          cumprimento de obrigações legais: <Pending>DEFINIR PERÍODO DE RETENÇÃO</Pending>.
-          Encerrado esse prazo, ou mediante seu pedido de exclusão, os dados são eliminados ou
-          anonimizados.
+          cumprimento de obrigações legais. Encerrado esse prazo, ou mediante seu pedido de
+          exclusão, os dados são eliminados ou anonimizados.
         </LegalText>
       </LegalSection>
 
@@ -183,8 +173,13 @@ export default function PrivacidadePage() {
         />
         <LegalText>
           Para exercer qualquer um desses direitos, entre em contato pelo canal:{" "}
-          <Pending>DEFINIR CANAL — E-MAIL DE CONTATO</Pending>. Responderemos no prazo previsto em
-          lei.
+          <a
+            href="mailto:somos@rc2solucoes.com.br"
+            className="text-accent-700 font-medium underline underline-offset-2"
+          >
+            somos@rc2solucoes.com.br
+          </a>
+          . Responderemos no prazo previsto em lei.
         </LegalText>
       </LegalSection>
 

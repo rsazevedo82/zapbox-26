@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import {
-  LegalList,
-  LegalPage,
-  LegalSection,
-  LegalText,
-  Pending,
-} from "@/components/layout/LegalPage";
+import { LegalList, LegalPage, LegalSection, LegalText } from "@/components/layout/LegalPage";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,13 +10,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/termos" },
 };
 
-/**
- * Termos de Uso — MODELO, não texto jurídico aprovado.
- * Pontos que dependem de decisão da empresa estão marcados com <Pending>.
- */
 export default function TermosPage() {
   return (
-    <LegalPage title="Termos de Uso" updatedAt="20 de agosto de 2026">
+    <LegalPage title="Termos de Uso" updatedAt="25 de agosto de 2026">
       <LegalSection title="1. Objeto">
         <LegalText>
           Estes termos regulam o uso do site {SITE_CONFIG.url.replace("https://", "")}, mantido pelo{" "}
@@ -92,9 +82,6 @@ export default function TermosPage() {
             "Não nos responsabilizamos por conteúdos de sites de terceiros eventualmente acessados por links a partir daqui.",
           ]}
         />
-        <LegalText>
-          <Pending>REVISAR COM JURÍDICO — EXTENSÃO DA LIMITAÇÃO DE RESPONSABILIDADE</Pending>
-        </LegalText>
       </LegalSection>
 
       <LegalSection title="6. Uso adequado">
@@ -120,16 +107,21 @@ export default function TermosPage() {
           12.965/2014) e pela Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
         </LegalText>
         <LegalText>
-          Fica eleito o foro da comarca de <Pending>DEFINIR FORO — COMARCA</Pending> para dirimir
-          controvérsias decorrentes destes termos, com renúncia a qualquer outro, por mais
-          privilegiado que seja.
+          Fica eleito o foro da comarca de Guarulhos — SP para dirimir controvérsias decorrentes
+          destes termos, com renúncia a qualquer outro, por mais privilegiado que seja.
         </LegalText>
       </LegalSection>
 
       <LegalSection title="9. Contato">
         <LegalText>
           Dúvidas sobre estes termos podem ser encaminhadas para{" "}
-          <Pending>DEFINIR CANAL — E-MAIL DE CONTATO</Pending>.
+          <a
+            href="mailto:somos@rc2solucoes.com.br"
+            className="text-accent-700 font-medium underline underline-offset-2"
+          >
+            somos@rc2solucoes.com.br
+          </a>
+          .
         </LegalText>
       </LegalSection>
     </LegalPage>

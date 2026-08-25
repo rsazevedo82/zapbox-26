@@ -39,31 +39,10 @@ export function LegalPage({
 
           <p className="mt-3 text-sm text-neutral-600">Última atualização: {updatedAt}</p>
 
-          <ReviewNotice />
-
           <div className="mt-10 flex flex-col gap-8">{children}</div>
         </div>
       </div>
     </article>
-  );
-}
-
-/** Aviso no topo: o documento inteiro ainda não passou por revisão jurídica. */
-function ReviewNotice() {
-  return (
-    <div
-      role="note"
-      className="border-warning-500 bg-warning-50 mt-8 rounded-lg border-l-4 px-4 py-3"
-    >
-      <p className="text-warning-700 text-sm font-semibold">
-        Documento preliminar — pendente de revisão jurídica
-      </p>
-      <p className="mt-1 text-sm text-neutral-700">
-        Este texto é um modelo estruturado e ainda não tem validade como documento definitivo. Os
-        trechos destacados precisam ser preenchidos e todo o conteúdo deve ser revisado por um
-        advogado antes da publicação.
-      </p>
-    </div>
   );
 }
 
@@ -92,22 +71,5 @@ export function LegalList({ items }: { items: ReactNode[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-/**
- * Marcador de pendência — impossível confundir com texto definitivo.
- * Fundo âmbar, monoespaçado e colchetes explícitos.
- */
-export function Pending({ children }: { children: ReactNode }) {
-  return (
-    <mark
-      className={cn(
-        "bg-warning-50 text-warning-700 ring-warning-500/40 rounded px-1.5 py-0.5 ring-1",
-        "font-mono text-sm font-semibold"
-      )}
-    >
-      [{children}]
-    </mark>
   );
 }
