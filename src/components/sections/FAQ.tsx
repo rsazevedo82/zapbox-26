@@ -106,9 +106,9 @@ export function FAQ() {
                     aria-controls={panelId}
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     className={cn(
-                      "flex w-full items-start justify-between gap-4 py-5 text-left",
+                      "flex w-full items-start justify-between gap-4 rounded-lg px-2 py-5 -mx-2",
                       "text-primary-950 text-base font-semibold sm:text-lg",
-                      "hover:text-accent-700 ease-fluid transition-colors duration-200",
+                      "hover:text-accent-700 hover:bg-accent-50/50 ease-fluid transition-colors duration-200",
                       "focus-visible:outline-accent-500 focus-visible:outline-2 focus-visible:outline-offset-2"
                     )}
                   >

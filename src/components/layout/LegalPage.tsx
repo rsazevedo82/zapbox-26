@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,17 +21,17 @@ export function LegalPage({
   children: ReactNode;
 }) {
   return (
-    <article className="bg-surface pt-24 pb-16 lg:pt-32 lg:pb-24">
+    <article className="surface-noise bg-surface relative pt-24 pb-16 lg:pt-32 lg:pb-24">
       <div className="container">
         <div className="mx-auto max-w-[45rem]">
           <Link
             href="/"
             className={cn(
-              "text-accent-700 hover:text-accent-800 text-sm font-medium",
+              "text-accent-700 hover:text-accent-800 ease-fluid inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200",
               "focus-visible:outline-accent-500 rounded focus-visible:outline-2 focus-visible:outline-offset-4"
             )}
           >
-            ← Voltar para o site
+            <span aria-hidden="true">←</span> Voltar para o site
           </Link>
 
           <h1 className="text-primary-950 mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -39,7 +40,9 @@ export function LegalPage({
 
           <p className="mt-3 text-sm text-neutral-600">Última atualização: {updatedAt}</p>
 
-          <div className="mt-10 flex flex-col gap-8">{children}</div>
+          <hr className="rule-gradient mt-10 ml-0 w-24" />
+
+          <div className="mt-10 flex flex-col gap-10">{children}</div>
         </div>
       </div>
     </article>
@@ -49,10 +52,15 @@ export function LegalPage({
 /** Bloco de seção com H2. */
 export function LegalSection({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="flex flex-col gap-3">
+    <ScrollReveal
+      as="div"
+      distance="0.75rem"
+      duration={450}
+      className="card-surface flex scroll-mt-24 flex-col gap-3 rounded-xl p-6 sm:p-7"
+    >
       <h2 className="text-primary-950 text-xl font-semibold">{title}</h2>
       {children}
-    </section>
+    </ScrollReveal>
   );
 }
 
