@@ -51,6 +51,10 @@ export function Header() {
   const anchorHref = (href: string) => (naHome ? href : `/${href}`);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  // O submenu "Soluções" é aberto via CSS (group-hover/group-focus-within), mas
+  // um clique em um link precisa fechá-lo de imediato mesmo com o mouse ainda
+  // sobre a área — daí este estado que sobrepõe o CSS até o próximo hover/foco.
+  const [submenuForceClosed, setSubmenuForceClosed] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -161,7 +165,14 @@ export function Header() {
               const temSubmenu = item.href === "#solucoes";
 
               return (
-                <li key={item.href} className={cn(temSubmenu && "group relative")}>
+                <li
+                  key={item.href}
+                  className={cn(temSubmenu && "group relative")}
+                  {...(temSubmenu && {
+                    onMouseEnter: () => setSubmenuForceClosed(false),
+                    onFocus: () => setSubmenuForceClosed(false),
+                  })}
+                >
                   <a
                     href={anchorHref(item.href)}
                     aria-current={isActive ? "true" : undefined}
@@ -189,15 +200,22 @@ export function Header() {
                       className={cn(
                         "invisible absolute top-full left-1/2 z-10 w-60 -translate-x-1/2 pt-3 opacity-0",
                         "ease-fluid transition-[opacity,visibility] duration-200",
-                        "group-hover:visible group-hover:opacity-100",
-                        "group-focus-within:visible group-focus-within:opacity-100"
+                        !submenuForceClosed && "group-hover:visible group-hover:opacity-100",
+                        !submenuForceClosed && "group-focus-within:visible group-focus-within:opacity-100"
                       )}
+                      // Sobrepõe o group-hover via CSS inline: um clique precisa
+                      // fechar o menu de imediato, mesmo com o mouse ainda em cima.
+                      style={submenuForceClosed ? { visibility: "hidden", opacity: 0 } : undefined}
                     >
                       <ul className="card-surface flex flex-col gap-1 rounded-xl p-2 shadow-lg">
                         {SOLUTION_PAGES.map((page) => (
                           <li key={page.href}>
                             <Link
                               href={page.href}
+                              onClick={(event) => {
+                                setSubmenuForceClosed(true);
+                                event.currentTarget.blur();
+                              }}
                               className={cn(
                                 "hover:bg-accent-50 ease-fluid block rounded-lg px-3 py-2 transition-colors duration-150",
                                 "focus-visible:outline-accent-500 focus-visible:outline-2 focus-visible:outline-offset-2"
