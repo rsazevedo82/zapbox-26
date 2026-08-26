@@ -250,6 +250,32 @@
   }
 }
 
+/*
+   Contraparte clara do feixe: as seções escuras têm uma fonte de luz visível
+   (.surface-beam) e as claras não tinham nada além da cor chapada, o que fazia
+   o site alternar entre "profundo" e "vazio" ao rolar. Mesma geometria e mesmos
+   matizes do feixe, em alfa baixíssimo — dá direção de luz sem tocar no
+   contraste do texto.
+
+   Usa ::after (e não ::before) de propósito, para poder ser combinada com
+   .surface-noise na mesma seção — as duas juntas formam o par textura + luz.
+*/
+@utility surface-glow {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(52rem 26rem at 78% -6%, rgb(0 153 95 / 0.07), transparent 62%),
+      radial-gradient(40rem 22rem at 8% 2%, rgb(43 91 131 / 0.07), transparent 66%);
+  }
+}
+
 /* Textura de ruído quase imperceptível para superfícies claras. */
 @utility surface-noise {
   position: relative;

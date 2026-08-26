@@ -21,7 +21,7 @@ export function LegalPage({
   children: ReactNode;
 }) {
   return (
-    <article className="surface-noise bg-surface relative pt-24 pb-16 lg:pt-32 lg:pb-24">
+    <article className="surface-noise surface-glow bg-surface relative pt-24 pb-16 lg:pt-32 lg:pb-24">
       <div className="container">
         <div className="mx-auto max-w-[45rem]">
           <Link

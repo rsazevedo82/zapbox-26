@@ -13,8 +13,10 @@ import { cn } from "@/lib/utils";
 type Background = "white" | "muted" | "dark";
 
 const BACKGROUNDS: Record<Background, string> = {
-  white: "surface-noise bg-surface",
-  muted: "surface-noise bg-surface-muted",
+  // surface-glow dá às seções claras a mesma direção de luz do feixe escuro:
+  // sem ela o site alterna entre seções profundas e seções chapadas.
+  white: "surface-noise surface-glow bg-surface",
+  muted: "surface-noise surface-glow bg-surface-muted",
   dark: "surface-beam grid-fade bg-primary-950 overflow-hidden",
 };
 
@@ -98,6 +100,10 @@ export function SolutionCards({
   columns?: 2 | 3;
   dark?: boolean;
 }) {
+  // Última linha com um único card ficaria encostada à esquerda, lendo como
+  // erro de grade. Num grid de 3 colunas, esse card órfão vai para o centro.
+  const orfaoCentral = columns === 3 && items.length % 3 === 1;
+
   return (
     <ul
       className={cn(
@@ -114,7 +120,8 @@ export function SolutionCards({
             "flex flex-col rounded-xl p-6",
             dark
               ? "glass-panel ease-fluid transition-colors duration-300 hover:border-white/25 hover:bg-white/10"
-              : "card-surface card-lift"
+              : "card-surface card-lift",
+            orfaoCentral && i === items.length - 1 && "lg:col-start-2"
           )}
         >
           <h3 className={cn("text-lg font-semibold", dark ? "text-white" : "text-primary-950")}>
@@ -165,15 +172,30 @@ export function SolutionHighlight({
   dark?: boolean;
 }) {
   return (
-    <ScrollReveal className="mx-auto max-w-[44rem] text-center">
-      <p
+    <ScrollReveal className="mx-auto max-w-[44rem]">
+      {/*
+        A frase de fecho é o payoff da seção, mas era só texto em negrito solto
+        no branco. Ganha um painel próprio com filete accent no topo — presença
+        sem virar card nem competir com o H2.
+      */}
+      <div
         className={cn(
-          "text-xl font-semibold text-balance sm:text-2xl",
-          dark ? "text-white" : "text-primary-950"
+          "relative overflow-hidden rounded-2xl px-6 py-8 text-center sm:px-10",
+          dark
+            ? "glass-panel"
+            : "from-accent-50/70 ring-accent-600/12 bg-gradient-to-b to-transparent ring-1"
         )}
       >
-        {children}
-      </p>
+        <span aria-hidden="true" className="rule-gradient absolute inset-x-0 top-0" />
+        <p
+          className={cn(
+            "text-xl font-semibold text-balance sm:text-2xl",
+            dark ? "text-white" : "text-primary-950"
+          )}
+        >
+          {children}
+        </p>
+      </div>
     </ScrollReveal>
   );
 }

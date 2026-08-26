@@ -177,26 +177,42 @@ export default function IntegracoesPage() {
       </SolutionSection>
 
       {/* 6 — Menos telas, mais contexto */}
-      <SolutionSection id="contexto" background="white" title="Menos telas. Mais contexto.">
-        <ScrollReveal className="mx-auto flex max-w-[44rem] flex-col gap-4 text-center">
-          <p className="text-base text-neutral-600 sm:text-lg">
-            Uma boa integração não significa necessariamente colocar tudo em um único sistema.
-          </p>
-          <p className="text-base text-neutral-600 sm:text-lg">
-            Significa fazer com que cada ferramenta tenha a informação que precisa no momento
-            certo.
-          </p>
-          <p className="text-base text-neutral-600 sm:text-lg">
-            O vendedor não precisa abrir cinco telas para descobrir o contexto de uma
-            oportunidade.
-          </p>
-          <p className="text-base text-neutral-600 sm:text-lg">
-            O atendente não precisa perguntar novamente algo que a empresa já sabe.
-          </p>
-          <p className="text-base text-neutral-600 sm:text-lg">
-            O gestor não precisa montar uma planilha para unir dados de diferentes lugares.
-          </p>
-        </ScrollReveal>
+      {/*
+        As duas primeiras frases enquadram a ideia e vão para o subtítulo; as
+        três seguintes são enunciados paralelos (vendedor / atendente / gestor)
+        e ganham uma coluna cada. O texto é o mesmo do documento — só a
+        estrutura acompanha o que a copy já dizia.
+      */}
+      <SolutionSection
+        id="contexto"
+        background="white"
+        title="Menos telas. Mais contexto."
+        subtitle={
+          <>
+            <p>Uma boa integração não significa necessariamente colocar tudo em um único sistema.</p>
+            <p>
+              Significa fazer com que cada ferramenta tenha a informação que precisa no momento
+              certo.
+            </p>
+          </>
+        }
+      >
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            "O vendedor não precisa abrir cinco telas para descobrir o contexto de uma oportunidade.",
+            "O atendente não precisa perguntar novamente algo que a empresa já sabe.",
+            "O gestor não precisa montar uma planilha para unir dados de diferentes lugares.",
+          ].map((frase, i) => (
+            <ScrollReveal
+              key={frase}
+              as="li"
+              delay={i * 70}
+              className="card-surface card-lift flex rounded-xl p-6"
+            >
+              <p className="text-base text-neutral-700">{frase}</p>
+            </ScrollReveal>
+          ))}
+        </ul>
       </SolutionSection>
 
       {/* 7 — Zapbox + integração + automação */}

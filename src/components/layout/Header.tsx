@@ -81,6 +81,16 @@ export function Header() {
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
+  /*
+    Qualquer troca de rota fecha o menu. Os links do painel já chamam
+    closeMenu no clique, mas o logo do header continua clicável com o menu
+    aberto — sem isto o painel sobrevive à navegação e o body fica preso em
+    overflow:hidden, deixando a página seguinte sem rolagem.
+  */
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
   // Enquanto o menu está aberto: trava o scroll, Escape fecha e Tab fica preso no painel.
   useEffect(() => {
     if (!menuOpen) return;
@@ -114,12 +124,21 @@ export function Header() {
       }
     };
 
+    // O painel é lg:hidden: ao alargar para desktop ele some da tela, mas o
+    // bloqueio de scroll continuaria aplicado se o estado não fosse limpo.
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onBreakpoint = (event: MediaQueryListEvent) => {
+      if (event.matches) closeMenu();
+    };
+
     document.addEventListener("keydown", onKeyDown);
+    desktop.addEventListener("change", onBreakpoint);
     panelRef.current?.querySelector<HTMLElement>("a[href], button")?.focus();
 
     return () => {
       document.body.style.overflow = overflow;
       document.removeEventListener("keydown", onKeyDown);
+      desktop.removeEventListener("change", onBreakpoint);
     };
   }, [menuOpen, closeMenu]);
 

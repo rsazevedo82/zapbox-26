@@ -59,7 +59,7 @@ export function AdditionalModules() {
     <section
       id="modulos"
       aria-labelledby="modulos-titulo"
-      className="surface-noise bg-surface relative py-20 lg:py-28"
+      className="surface-noise surface-glow bg-surface relative py-20 lg:py-28"
     >
       <div className="container">
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
