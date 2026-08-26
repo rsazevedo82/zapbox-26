@@ -15,6 +15,11 @@ import { cn } from "@/lib/utils";
  * A assinatura "Zapbox by RC2 Soluções" vem do documento de copy (FOOTER).
  */
 
+const SOLUTION_LINKS = [
+  { label: "CRM & Vendas", href: "/crm-vendas" },
+  { label: "Sales AI", href: "/sales-ai" },
+];
+
 const LEGAL_LINKS = [
   { label: "Política de Privacidade", href: "/privacidade" },
   { label: "Termos de Uso", href: "/termos" },
@@ -65,7 +70,7 @@ export function Footer() {
                 href="https://www.rc2solucoes.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2 hover:text-primary-200"
+                className="hover:text-primary-200 underline underline-offset-2"
               >
                 {SITE_CONFIG.company}
               </a>
@@ -74,6 +79,20 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-16">
+            {/* Soluções */}
+            <nav aria-label="Soluções">
+              <h2 className="text-sm font-semibold tracking-wide text-white uppercase">Soluções</h2>
+              <ul className="mt-4 flex flex-col gap-1">
+                {SOLUTION_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className={LINK_STYLES}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
             {/* Institucional */}
             <nav aria-label="Links institucionais">
               <h2 className="text-sm font-semibold tracking-wide text-white uppercase">Legal</h2>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
@@ -29,12 +30,23 @@ const NAV_ITEMS: NavItem[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
+/** Páginas de solução, exibidas como submenu de "Soluções". */
+const SOLUTION_PAGES = [
+  { label: "CRM & Vendas", href: "/crm-vendas", description: "Pipeline e oportunidades" },
+  { label: "Sales AI", href: "/sales-ai", description: "Atendimento com IA" },
+];
+
 /** Ids observados para marcar o link da seção em leitura. */
 const NAV_IDS = NAV_ITEMS.map((item) => item.href.slice(1));
 
 export function Header() {
   const { openForm } = useLeadForm();
-  const activeSection = useActiveSection(NAV_IDS);
+  const pathname = usePathname();
+  const naHome = pathname === "/";
+  const activeSection = useActiveSection(naHome ? NAV_IDS : []);
+
+  // Fora da home as âncoras precisam voltar para a página inicial primeiro.
+  const anchorHref = (href: string) => (naHome ? href : `/${href}`);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -144,11 +156,12 @@ export function Header() {
           <ul className="flex items-center gap-8">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.slice(1);
+              const temSubmenu = item.href === "#solucoes";
 
               return (
-                <li key={item.href}>
+                <li key={item.href} className={cn(temSubmenu && "group relative")}>
                   <a
-                    href={item.href}
+                    href={anchorHref(item.href)}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
                       "hover:text-accent-700 ease-fluid relative text-base font-medium transition-colors duration-200",
@@ -164,6 +177,42 @@ export function Header() {
                   >
                     {item.label}
                   </a>
+
+                  {/*
+                    Submenu CSS-only: abre no hover e também no foco por
+                    teclado (group-focus-within), sem depender de JS.
+                  */}
+                  {temSubmenu && (
+                    <div
+                      className={cn(
+                        "invisible absolute top-full left-1/2 z-10 w-60 -translate-x-1/2 pt-3 opacity-0",
+                        "ease-fluid transition-[opacity,visibility] duration-200",
+                        "group-hover:visible group-hover:opacity-100",
+                        "group-focus-within:visible group-focus-within:opacity-100"
+                      )}
+                    >
+                      <ul className="card-surface flex flex-col gap-1 rounded-xl p-2 shadow-lg">
+                        {SOLUTION_PAGES.map((page) => (
+                          <li key={page.href}>
+                            <Link
+                              href={page.href}
+                              className={cn(
+                                "hover:bg-accent-50 ease-fluid block rounded-lg px-3 py-2 transition-colors duration-150",
+                                "focus-visible:outline-accent-500 focus-visible:outline-2 focus-visible:outline-offset-2"
+                              )}
+                            >
+                              <span className="text-primary-950 block text-sm font-semibold">
+                                {page.label}
+                              </span>
+                              <span className="block text-xs text-neutral-600">
+                                {page.description}
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </li>
               );
             })}
@@ -227,7 +276,7 @@ export function Header() {
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>
                     <a
-                      href={item.href}
+                      href={anchorHref(item.href)}
                       onClick={closeMenu}
                       className={cn(
                         "flex min-h-[3rem] items-center border-b border-white/10 text-lg font-medium text-white",
@@ -237,6 +286,24 @@ export function Header() {
                     >
                       {item.label}
                     </a>
+                  </li>
+                ))}
+
+                {/* Páginas de solução, indentadas sob a navegação principal. */}
+                {SOLUTION_PAGES.map((page) => (
+                  <li key={page.href}>
+                    <Link
+                      href={page.href}
+                      onClick={closeMenu}
+                      className={cn(
+                        "flex min-h-[3rem] items-center gap-3 border-b border-white/10 pl-4 text-base",
+                        "text-primary-200 hover:text-accent-300 transition-colors",
+                        "focus-visible:outline-accent-400 focus-visible:outline-2 focus-visible:outline-offset-2"
+                      )}
+                    >
+                      <span aria-hidden="true" className="bg-accent-400/60 h-px w-4" />
+                      {page.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
