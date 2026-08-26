@@ -250,7 +250,8 @@ export function LeadFormModal({ isOpen, onClose, planInterest, sourceCta }: Lead
         aria-labelledby={titleId}
         className={cn(
           "relative z-10 flex max-h-[92dvh] w-full flex-col overflow-y-auto",
-          "bg-surface rounded-t-xl p-6 shadow-2xl sm:max-w-lg sm:rounded-xl sm:p-8",
+          "from-surface to-primary-50/50 bg-gradient-to-b bg-surface",
+          "rounded-t-xl p-6 shadow-2xl sm:max-w-lg sm:rounded-xl sm:p-8",
           "motion-safe:animate-consent-in"
         )}
       >

@@ -31,7 +31,7 @@ export function ProductDemo() {
     <section
       id="produto"
       aria-labelledby="produto-titulo"
-      className="surface-beam bg-primary-950 relative overflow-hidden py-20 lg:py-28"
+      className="surface-beam grid-fade bg-primary-950 relative overflow-hidden py-20 lg:py-28"
     >
       <div className="container">
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
