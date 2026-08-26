@@ -142,6 +142,9 @@ function Connector({ horizontal, surface }: { horizontal: boolean; surface: "lig
 /** Bifurcação: uma pergunta e duas ou mais saídas lado a lado. */
 function Branch({ branch, surface }: { branch: FlowBranch; surface: "light" | "dark" }) {
   const dark = surface === "dark";
+  // Com uma única saída não há bifurcação: a forquilha de dois braços deixaria
+  // um traço morrendo no vazio. Nesse caso o fluxo segue reto.
+  const unicaSaida = branch.options.length === 1;
 
   return (
     <div className="flex flex-col items-center">
@@ -164,30 +167,36 @@ function Branch({ branch, surface }: { branch: FlowBranch; surface: "light" | "d
         Forquilha: tronco curto que se abre em dois braços apontando para o
         centro de cada coluna. Só no tablet+ — empilhado, a linha reta basta.
       */}
-      <span
-        aria-hidden="true"
-        className={cn("h-4 w-px", dark ? "bg-accent-400/50" : "bg-accent-600/40")}
-      />
-      <div aria-hidden="true" className="hidden h-5 w-full px-[25%] sm:flex">
-        <span
-          className={cn(
-            "flex-1 rounded-tl-md border-t border-l",
-            dark ? "border-accent-400/50" : "border-accent-600/40"
-          )}
-        />
-        <span
-          className={cn(
-            "flex-1 rounded-tr-md border-t border-r",
-            dark ? "border-accent-400/50" : "border-accent-600/40"
-          )}
-        />
-      </div>
-      <span
-        aria-hidden="true"
-        className={cn("h-4 w-px sm:hidden", dark ? "bg-accent-400/50" : "bg-accent-600/40")}
-      />
+      {unicaSaida ? (
+        <Connector horizontal={false} surface={surface} />
+      ) : (
+        <>
+          <span
+            aria-hidden="true"
+            className={cn("h-4 w-px", dark ? "bg-accent-400/50" : "bg-accent-600/40")}
+          />
+          <div aria-hidden="true" className="hidden h-5 w-full px-[25%] sm:flex">
+            <span
+              className={cn(
+                "flex-1 rounded-tl-md border-t border-l",
+                dark ? "border-accent-400/50" : "border-accent-600/40"
+              )}
+            />
+            <span
+              className={cn(
+                "flex-1 rounded-tr-md border-t border-r",
+                dark ? "border-accent-400/50" : "border-accent-600/40"
+              )}
+            />
+          </div>
+          <span
+            aria-hidden="true"
+            className={cn("h-4 w-px sm:hidden", dark ? "bg-accent-400/50" : "bg-accent-600/40")}
+          />
+        </>
+      )}
 
-      <ul className="mt-4 grid w-full gap-4 sm:grid-cols-2">
+      <ul className={cn("mt-4 grid w-full gap-4", !unicaSaida && "sm:grid-cols-2")}>
         {branch.options.map((option) => (
           <li key={option.label} className="mx-auto flex w-full max-w-sm flex-col items-center">
             <span

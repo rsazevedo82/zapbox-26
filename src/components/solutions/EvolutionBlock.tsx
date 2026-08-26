@@ -38,7 +38,7 @@ export function EvolutionBlock({ activeStep }: { activeStep?: EvolutionStep }) {
           </h2>
         </ScrollReveal>
 
-        <ol className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-5 lg:gap-4">
+        <ol className="relative mt-12 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:mt-16 lg:grid-cols-5 lg:gap-4">
           {/* Linha conectora: nasce accent na entrada e esmaece ao avançar. */}
           <span
             aria-hidden="true"
@@ -47,36 +47,58 @@ export function EvolutionBlock({ activeStep }: { activeStep?: EvolutionStep }) {
 
           {STAGES.map((stage, index) => {
             const isActive = activeStep === stage.id;
+            const isLast = index === STAGES.length - 1;
 
             return (
               <ScrollReveal
                 key={stage.id}
                 as="li"
                 delay={index * 70}
-                className="relative flex flex-col lg:items-center lg:text-center"
+                className={cn(
+                  // Empilhado vira uma linha do tempo vertical: marcador à
+                  // esquerda, texto à direita. A partir de sm volta a ser coluna.
+                  "relative flex items-start gap-4",
+                  "sm:flex-col sm:gap-0 lg:items-center lg:text-center"
+                )}
               >
+                {/* Conector vertical — só na linha do tempo empilhada. */}
+                {!isLast && (
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "from-accent-500/45 absolute top-11 -bottom-5 left-5 w-px -translate-x-1/2",
+                      "bg-gradient-to-b to-neutral-300/70 sm:hidden"
+                    )}
+                  />
+                )}
+
                 <span
                   className={cn(
                     "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
                     "ring-surface-muted text-sm font-bold ring-8",
                     isActive
                       ? "from-accent-600 to-accent-700 glow-accent motion-safe:animate-node-pulse bg-gradient-to-b text-white shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]"
-                      : "bg-surface text-primary-700 border border-neutral-300"
+                      : cn(
+                          "from-surface to-primary-50 text-primary-700 border border-neutral-300 bg-gradient-to-b",
+                          "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.9),0_1px_2px_0_rgb(0_33_54/0.08)]"
+                        )
                   )}
                   aria-current={isActive ? "step" : undefined}
                 >
                   {index + 1}
                 </span>
 
-                <h3
-                  className={cn(
-                    "mt-4 text-base font-semibold",
-                    isActive ? "text-accent-800" : "text-primary-800"
-                  )}
-                >
-                  {stage.name}
-                </h3>
-                <p className="mt-1 text-sm text-neutral-600">{stage.solution}</p>
+                <div className="min-w-0 flex-1 pt-1.5 sm:mt-4 sm:flex-none sm:pt-0">
+                  <h3
+                    className={cn(
+                      "text-base font-semibold",
+                      isActive ? "text-accent-800" : "text-primary-800"
+                    )}
+                  >
+                    {stage.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-neutral-600">{stage.solution}</p>
+                </div>
               </ScrollReveal>
             );
           })}
