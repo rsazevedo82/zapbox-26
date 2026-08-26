@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
@@ -19,6 +20,7 @@ type Module = {
   tagline: string;
   description: string;
   icon: ReactNode;
+  href?: string;
 };
 
 const MODULES: Module[] = [
@@ -48,6 +50,7 @@ const MODULES: Module[] = [
     description:
       "Integre ERP, CRM, e-commerce, formulários e sistemas próprios à operação da Zapbox.",
     icon: <PlugIcon />,
+    href: "/integracoes",
   },
 ];
 
@@ -69,22 +72,38 @@ export function AdditionalModules() {
         </ScrollReveal>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {MODULES.map((module, i) => (
-            <ScrollReveal
-              key={module.name}
-              as="li"
-              delay={i * 70}
-              className={cn("card-surface card-lift group flex flex-col rounded-xl p-5")}
-            >
-              <span className="bg-accent-50 text-accent-700 ring-accent-600/15 ease-fluid group-hover:from-accent-600 group-hover:to-accent-700 flex h-10 w-10 items-center justify-center rounded-xl ring-1 transition-colors duration-300 group-hover:bg-gradient-to-b group-hover:text-white">
-                {module.icon}
-              </span>
+          {MODULES.map((module, i) => {
+            const cardClasses = cn("card-surface card-lift group flex flex-col rounded-xl p-5");
+            const content = (
+              <>
+                <span className="bg-accent-50 text-accent-700 ring-accent-600/15 ease-fluid group-hover:from-accent-600 group-hover:to-accent-700 flex h-10 w-10 items-center justify-center rounded-xl ring-1 transition-colors duration-300 group-hover:bg-gradient-to-b group-hover:text-white">
+                  {module.icon}
+                </span>
 
-              <h3 className="text-primary-950 mt-4 text-base font-semibold">{module.name}</h3>
-              <p className="text-primary-800 mt-1 text-sm font-medium">{module.tagline}</p>
-              <p className="mt-2 text-sm text-neutral-600">{module.description}</p>
-            </ScrollReveal>
-          ))}
+                <h3 className="text-primary-950 mt-4 text-base font-semibold">{module.name}</h3>
+                <p className="text-primary-800 mt-1 text-sm font-medium">{module.tagline}</p>
+                <p className="mt-2 text-sm text-neutral-600">{module.description}</p>
+              </>
+            );
+
+            return (
+              <ScrollReveal key={module.name} as="li" delay={i * 70}>
+                {module.href ? (
+                  <Link
+                    href={module.href}
+                    className={cn(
+                      cardClasses,
+                      "focus-visible:outline-accent-500 focus-visible:outline-2 focus-visible:outline-offset-2"
+                    )}
+                  >
+                    {content}
+                  </Link>
+                ) : (
+                  <div className={cardClasses}>{content}</div>
+                )}
+              </ScrollReveal>
+            );
+          })}
         </ul>
 
         <div className="mt-12 flex justify-center">

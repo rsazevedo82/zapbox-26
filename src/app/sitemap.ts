@@ -16,6 +16,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: `${baseUrl}/sales-ai`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     {
+      url: `${baseUrl}/automacoes`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/integracoes`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/privacidade`,
       lastModified,
       changeFrequency: "monthly",

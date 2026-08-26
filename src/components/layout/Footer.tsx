@@ -16,8 +16,10 @@ import { cn } from "@/lib/utils";
  */
 
 const SOLUTION_LINKS = [
-  { label: "CRM & Vendas", href: "/crm-vendas" },
   { label: "Sales AI", href: "/sales-ai" },
+  { label: "CRM & Vendas", href: "/crm-vendas" },
+  { label: "Automações", href: "/automacoes" },
+  { label: "Integrações", href: "/integracoes" },
 ];
 
 const LEGAL_LINKS = [

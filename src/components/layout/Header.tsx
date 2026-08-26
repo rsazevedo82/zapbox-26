@@ -32,8 +32,10 @@ const NAV_ITEMS: NavItem[] = [
 
 /** Páginas de solução, exibidas como submenu de "Soluções". */
 const SOLUTION_PAGES = [
-  { label: "CRM & Vendas", href: "/crm-vendas", description: "Pipeline e oportunidades" },
   { label: "Sales AI", href: "/sales-ai", description: "Atendimento com IA" },
+  { label: "CRM & Vendas", href: "/crm-vendas", description: "Pipeline e oportunidades" },
+  { label: "Automações", href: "/automacoes", description: "Menos tarefa manual" },
+  { label: "Integrações", href: "/integracoes", description: "Sistemas conectados" },
 ];
 
 /** Ids observados para marcar o link da seção em leitura. */

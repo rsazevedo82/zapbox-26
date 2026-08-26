@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { Button } from "@/components/ui/Button";
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
 import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -23,6 +24,7 @@ type Solution = {
   text: string;
   benefits: string[];
   ctaLabel: string;
+  href: string;
   icon: ReactNode;
 };
 
@@ -40,6 +42,7 @@ const SOLUTIONS: Solution[] = [
       "Motivos de perda registrados, não esquecidos",
     ],
     ctaLabel: "Conhecer CRM & Vendas",
+    href: "/crm-vendas",
     icon: <PipelineIcon />,
   },
   {
@@ -55,6 +58,7 @@ const SOLUTIONS: Solution[] = [
       "Conexão entre Zapbox e outros sistemas",
     ],
     ctaLabel: "Conhecer Automações",
+    href: "/automacoes",
     icon: <AutomationIcon />,
   },
   {
@@ -70,6 +74,7 @@ const SOLUTIONS: Solution[] = [
       "Transferência para humano quando necessário",
     ],
     ctaLabel: "Conhecer Sales AI",
+    href: "/sales-ai",
     icon: <SparkIcon />,
   },
 ];
@@ -133,14 +138,9 @@ export function AdvancedSolutions() {
 
                 <div className="mt-8 grow" />
 
-                <SpecialistButton
-                  sourceCta={`advanced-solutions-${solution.id}`}
-                  variant="secondary"
-                  size="md"
-                  className="w-full"
-                >
+                <Button href={solution.href} variant="secondary" size="md" className="w-full">
                   {solution.ctaLabel}
-                </SpecialistButton>
+                </Button>
               </div>
             </ScrollReveal>
           ))}
