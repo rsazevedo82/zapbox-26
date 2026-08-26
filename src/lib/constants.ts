@@ -1,7 +1,9 @@
 export const SITE_CONFIG = {
   name: "Zapbox",
   tagline: "Atendimento em equipe pelo WhatsApp",
-  url: "https://zapbox.cloud",
+  // Domínio oficial é o www: o apex faz 308 para cá. Canonical, og:url e
+  // sitemap precisam apontar para a URL final, não para a que redireciona.
+  url: "https://www.zapbox.cloud",
   company: "RC2 Soluções",
   // Número comercial: vem do ambiente, não do código. Sem ele, getWhatsAppUrl()
   // devolve "#" e os CTAs consultivos caem para o formulário de lead.

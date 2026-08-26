@@ -15,7 +15,13 @@ export default function TermosPage() {
     <LegalPage title="Termos de Uso" updatedAt="25 de agosto de 2026">
       <LegalSection title="1. Objeto">
         <LegalText>
-          Estes termos regulam o uso do site {SITE_CONFIG.url.replace("https://", "")}, mantido pelo{" "}
+          {/*
+            No texto legal vale o domínio sem protocolo nem "www." — os termos
+            regulam o site nas duas formas, e a URL canônica (com www) é
+            assunto de SEO, não de redação jurídica.
+          */}
+          Estes termos regulam o uso do site{" "}
+          {SITE_CONFIG.url.replace("https://", "").replace(/^www\./, "")}, mantido pelo{" "}
           {SITE_CONFIG.name}, operado por{" "}
           <a
             href="https://www.rc2solucoes.com.br"
