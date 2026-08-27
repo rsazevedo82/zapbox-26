@@ -94,7 +94,7 @@ export function AdvancedSolutions() {
 
           <h2
             id="solucoes-avancadas-titulo"
-            className="text-primary-950 mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-primary-950 mt-4 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             Três formas de fazer sua operação ir além do atendimento
           </h2>

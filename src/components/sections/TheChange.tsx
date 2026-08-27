@@ -28,7 +28,7 @@ export function TheChange() {
 
           <h2
             id="a-mudanca-titulo"
-            className="text-primary-950 mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-primary-950 mt-4 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             O Zapbox coloca ordem na operação sem mudar a forma como seu cliente fala com você
           </h2>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { GTMNoScript } from "@/components/layout/GTMNoScript";
@@ -15,6 +15,24 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+/**
+ * Fonte de display — só para H1, H2 e frases de destaque; o corpo segue Inter.
+ *
+ * Space Grotesk é a única das candidatas que atende aos três critérios ao mesmo
+ * tempo: está no Google Fonts (logo, `next/font/google`, sem dependência nova),
+ * é grotesca — técnica, não editorial nem lúdica — e cobre os acentos do
+ * português. Suas particularidades (o "a" de perna reta, o "g" de andar único)
+ * dão voz aos títulos sem brigar com a neutralidade da Inter ao lado.
+ */
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  // `--font-display-face` guarda só a família; o token do Tailwind que gera a
+  // utility chama-se `--font-display` e monta a pilha completa em globals.css.
+  variable: "--font-display-face",
   display: "swap",
 });
 
@@ -86,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="bg-surface font-sans text-neutral-900 antialiased">
         <GTMNoScript />
         <GTMScript />

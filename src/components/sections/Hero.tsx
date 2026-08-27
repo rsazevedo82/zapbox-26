@@ -65,7 +65,7 @@ export function Hero() {
           <h1
             id="hero-titulo"
             className={cn(
-              "text-shine mt-7 text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-7xl",
+              "text-shine font-display mt-7 text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl lg:text-7xl",
               "leading-[1.08]",
               ENTER
             )}

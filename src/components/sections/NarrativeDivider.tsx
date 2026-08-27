@@ -27,7 +27,7 @@ export function NarrativeDivider() {
 
           <h2
             id="alem-titulo"
-            className="text-shine mt-6 text-3xl leading-[1.1] font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
+            className="text-shine font-display mt-6 text-3xl leading-[1.08] font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl"
           >
             Precisa de mais do que organizar seu WhatsApp?
           </h2>

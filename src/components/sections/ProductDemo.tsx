@@ -37,7 +37,7 @@ export function ProductDemo() {
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="produto-titulo"
-            className="text-shine text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-shine font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             Veja o Zapbox em ação
           </h2>

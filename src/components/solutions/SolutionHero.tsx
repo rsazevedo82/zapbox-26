@@ -60,7 +60,7 @@ export function SolutionHero({ eyebrow, headline, children, cta, whatsappCta }: 
           <h1
             id="pagina-titulo"
             className={cn(
-              "text-shine mt-7 text-3xl leading-[1.12] font-bold tracking-tight text-balance",
+              "text-shine font-display mt-7 text-3xl leading-[1.08] font-bold tracking-tight text-balance",
               "sm:text-4xl lg:text-5xl",
               ENTER
             )}

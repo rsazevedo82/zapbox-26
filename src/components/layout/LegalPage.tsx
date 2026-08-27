@@ -34,7 +34,7 @@ export function LegalPage({
             <span aria-hidden="true">←</span> Voltar para o site
           </Link>
 
-          <h1 className="text-primary-950 mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h1 className="text-primary-950 mt-6 font-display text-3xl leading-[1.12] font-bold tracking-tight sm:text-4xl">
             {title}
           </h1>
 
@@ -58,7 +58,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
       duration={450}
       className="card-surface flex scroll-mt-24 flex-col gap-3 rounded-xl p-6 sm:p-7"
     >
-      <h2 className="text-primary-950 text-xl font-semibold">{title}</h2>
+      <h2 className="text-primary-950 font-display text-xl font-semibold">{title}</h2>
       {children}
     </ScrollReveal>
   );

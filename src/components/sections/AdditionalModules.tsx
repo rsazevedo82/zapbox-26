@@ -65,7 +65,7 @@ export function AdditionalModules() {
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="modulos-titulo"
-            className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-primary-950 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             Adicione novos recursos conforme sua operação cresce
           </h2>

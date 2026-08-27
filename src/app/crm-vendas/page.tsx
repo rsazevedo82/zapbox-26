@@ -122,9 +122,14 @@ export default function CrmVendasPage() {
       </SolutionSection>
 
       {/* 3 — Pipeline */}
+      {/*
+        Escura e numerada: o pipeline é o que diferencia esta página das outras
+        três, e é o único fluxo do site em que a ORDEM é a informação — cada
+        etapa só existe depois da anterior. Numerar aqui é semântico, não enfeite.
+      */}
       <SolutionSection
         id="pipeline"
-        background="muted"
+        background="dark"
         title="Do WhatsApp para o pipeline"
         subtitle={
           <>
@@ -134,6 +139,8 @@ export default function CrmVendasPage() {
         }
       >
         <FlowDiagram
+          surface="dark"
+          numbered
           nodes={[
             { label: "Conversa" },
             { label: "Lead" },

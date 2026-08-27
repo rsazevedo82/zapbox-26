@@ -30,7 +30,7 @@ export function FinalCTA() {
         <div className="mx-auto grid max-w-[56rem] items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Bloco esquerdo — Produto (primeiro também no mobile) */}
           <ScrollReveal className={BLOCK_STYLES}>
-            <h2 className="text-shine text-2xl font-bold text-balance sm:text-3xl">
+            <h2 className="text-shine font-display text-2xl leading-[1.15] font-bold text-balance sm:text-3xl">
               Quer organizar seu WhatsApp agora?
             </h2>
 
@@ -45,7 +45,7 @@ export function FinalCTA() {
 
           {/* Bloco direito — Soluções */}
           <ScrollReveal delay={110} className={BLOCK_STYLES}>
-            <h2 className="text-shine text-2xl font-bold text-balance sm:text-3xl">
+            <h2 className="text-shine font-display text-2xl leading-[1.15] font-bold text-balance sm:text-3xl">
               Quer automatizar sua operação?
             </h2>
 

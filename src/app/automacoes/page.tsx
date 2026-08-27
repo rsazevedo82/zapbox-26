@@ -235,13 +235,20 @@ export default function AutomacoesPage() {
       </SolutionSection>
 
       {/* 8 — Stack integrada */}
+      {/*
+        Escura e com pulso: é a única página cujo assunto é o dado se movendo
+        sozinho entre sistemas. O pulso percorre os blocos em sequência e diz
+        isso sem uma palavra a mais. Some com prefers-reduced-motion.
+      */}
       <SolutionSection
         id="stack"
-        background="white"
+        background="dark"
         title="Zapbox + CRM + automação"
         subtitle={<p>É onde a operação começa a ganhar escala.</p>}
       >
         <FlowDiagram
+          surface="dark"
+          animated
           nodes={[
             { label: "WhatsApp" },
             { label: "Zapbox" },
@@ -252,7 +259,7 @@ export default function AutomacoesPage() {
         />
 
         <ScrollReveal className="mx-auto mt-14 max-w-[44rem] text-center">
-          <p className="text-lg text-neutral-600">
+          <p className="text-primary-200 text-lg">
             Conversas viram dados. Dados viram ações. Ações deixam de depender de memória.
           </p>
         </ScrollReveal>

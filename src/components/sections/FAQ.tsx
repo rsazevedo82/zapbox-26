@@ -84,7 +84,7 @@ export function FAQ() {
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="faq-titulo"
-            className="text-primary-950 text-3xl font-bold tracking-tight sm:text-4xl"
+            className="text-primary-950 font-display text-3xl leading-[1.12] font-bold tracking-tight sm:text-4xl"
           >
             Perguntas frequentes
           </h2>

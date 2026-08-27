@@ -52,7 +52,7 @@ export function Pricing() {
 
           <h2
             id="planos-titulo"
-            className="text-primary-950 mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-primary-950 mt-4 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             Escolha o plano certo para organizar seu WhatsApp
           </h2>

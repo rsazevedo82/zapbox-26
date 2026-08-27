@@ -62,7 +62,7 @@ export function SolutionSection({
           <h2
             id={tituloId}
             className={cn(
-              "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
+              "font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl",
               eyebrow && "mt-4",
               dark ? "text-shine" : "text-primary-950"
             )}
@@ -189,7 +189,7 @@ export function SolutionHighlight({
         <span aria-hidden="true" className="rule-gradient absolute inset-x-0 top-0" />
         <p
           className={cn(
-            "text-xl font-semibold text-balance sm:text-2xl",
+            "font-display text-xl leading-[1.2] font-semibold text-balance sm:text-2xl",
             dark ? "text-white" : "text-primary-950"
           )}
         >

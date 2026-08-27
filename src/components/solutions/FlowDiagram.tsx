@@ -31,10 +31,27 @@ type FlowDiagramProps = {
   branch?: FlowBranch;
   /** "dark" para seções sobre primary-950. */
   surface?: "light" | "dark";
+  /**
+   * Numera as etapas. Só para fluxos em que a ordem É a informação — o
+   * pipeline comercial. Não use em fluxo que apenas encadeia sistemas.
+   */
+  numbered?: boolean;
+  /**
+   * Pulso que percorre os blocos em sequência, sugerindo o dado atravessando
+   * o fluxo. Exclusivo de /automacoes. Respeita prefers-reduced-motion.
+   */
+  animated?: boolean;
   className?: string;
 };
 
-export function FlowDiagram({ nodes, branch, surface = "light", className }: FlowDiagramProps) {
+export function FlowDiagram({
+  nodes,
+  branch,
+  surface = "light",
+  numbered = false,
+  animated = false,
+  className,
+}: FlowDiagramProps) {
   const horizontal = !branch && nodes.length <= 5;
 
   return (
@@ -55,7 +72,12 @@ export function FlowDiagram({ nodes, branch, surface = "light", className }: Flo
             key={node.label}
             className={cn("flex flex-col items-center", horizontal && "lg:flex-1 lg:flex-row")}
           >
-            <Block node={node} surface={surface} />
+            <Block
+              node={node}
+              surface={surface}
+              step={numbered ? i + 1 : undefined}
+              pulseDelay={animated ? i * 320 : undefined}
+            />
             {i < nodes.length - 1 && <Connector horizontal={horizontal} surface={surface} />}
           </li>
         ))}
@@ -68,14 +90,26 @@ export function FlowDiagram({ nodes, branch, surface = "light", className }: Flo
 
 /* -------------------------------------------------------------------------- */
 
-function Block({ node, surface }: { node: FlowNode; surface: "light" | "dark" }) {
+function Block({
+  node,
+  surface,
+  step,
+  pulseDelay,
+}: {
+  node: FlowNode;
+  surface: "light" | "dark";
+  /** Número da etapa, quando a ordem é informação. */
+  step?: number;
+  /** Atraso do pulso sequencial, em ms. */
+  pulseDelay?: number;
+}) {
   const dark = surface === "dark";
   const tone = node.tone ?? "default";
 
   return (
     <div
       className={cn(
-        "w-full min-w-0 rounded-xl px-5 py-4 text-center",
+        "relative w-full min-w-0 rounded-xl px-5 py-4 text-center",
         dark ? "glass-panel" : "card-surface ring-0",
         tone === "accent" &&
           (dark
@@ -84,6 +118,35 @@ function Block({ node, surface }: { node: FlowNode; surface: "light" | "dark" })
         tone === "muted" && "opacity-70"
       )}
     >
+      {/* Pulso sequencial: só um brilho de borda, sem mexer no layout. */}
+      {pulseDelay !== undefined && (
+        <span
+          aria-hidden="true"
+          style={{ animationDelay: `${pulseDelay}ms` }}
+          className={cn(
+            "pointer-events-none absolute inset-0 rounded-xl opacity-0",
+            "motion-safe:animate-flow-step",
+            dark
+              ? "ring-accent-400/70 shadow-[0_0_18px_-2px_rgb(0_153_95/0.55)] ring-2"
+              : "ring-accent-600/60 shadow-[0_0_18px_-4px_rgb(0_153_95/0.45)] ring-2"
+          )}
+        />
+      )}
+
+      {step !== undefined && (
+        <span
+          aria-hidden="true"
+          className={cn(
+            "absolute top-1/2 -left-3 flex h-6 w-6 -translate-y-1/2 items-center justify-center",
+            "rounded-full text-[0.6875rem] font-bold",
+            dark
+              ? "bg-primary-950 text-accent-300 ring-accent-400/40 ring-1"
+              : "bg-surface text-accent-700 ring-accent-600/30 ring-1"
+          )}
+        >
+          {step}
+        </span>
+      )}
       <p
         className={cn(
           "text-sm font-semibold tracking-[0.08em] uppercase",

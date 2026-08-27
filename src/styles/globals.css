@@ -29,6 +29,13 @@
     var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
 
+  /* Display: só títulos (H1/H2) e frases de destaque. Gera a utility
+     `font-display`. O fallback repete a pilha da Inter para o swap não
+     deslocar o layout. */
+  --font-display:
+    var(--font-display-face), var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
   /* ---------- Primary (azul escuro da marca) ---------- */
   --color-primary-50: #f0f6fa;
   --color-primary-100: #dbe9f2;
@@ -130,6 +137,37 @@
   --animate-enter: enter 520ms var(--ease-fluid) both;
   /* Deriva lentíssima do feixe — 48s por ciclo, quase imperceptível. */
   --animate-beam-drift: beam-drift 48s ease-in-out infinite;
+  /* Pulso que percorre um fluxo, bloco a bloco (só em /automacoes). */
+  --animate-flow-step: flow-step 3.2s ease-in-out infinite;
+  /* Reticências de "digitando" (só em /sales-ai). */
+  --animate-typing: typing 1.4s ease-in-out infinite;
+
+  @keyframes typing {
+    0%,
+    60%,
+    100% {
+      opacity: 0.25;
+      transform: translateY(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+
+  /* Só opacidade: nada de layout, nada de repaint caro. */
+  @keyframes flow-step {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    24% {
+      opacity: 0;
+    }
+  }
 
   @keyframes consent-in {
     from {

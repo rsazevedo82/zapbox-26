@@ -12,6 +12,7 @@ import {
 } from "@/components/solutions/SolutionSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SpecialistButton } from "@/components/ui/SpecialistButton";
+import { cn } from "@/lib/utils";
 
 /**
  * Página /sales-ai.
@@ -63,6 +64,18 @@ const CONECTADA = [
   { title: "Automações", description: "Regras, notificações e tarefas." },
   { title: "Agenda", description: "Reuniões e compromissos." },
   { title: "Integrações", description: "ERP, CRM, e-commerce e sistemas próprios." },
+];
+
+/**
+ * Os quatro itens da lista da seção "Veja antes de contratar", literais do
+ * documento de copy. Continuam sendo a mesma lista — mudou só a forma como
+ * são apresentados (ver ConversaValeria, no fim do arquivo).
+ */
+const PERGUNTAS_VALERIA = [
+  "Pergunte sobre os planos.",
+  "Diga quantas pessoas atendem sua empresa.",
+  "Pergunte sobre CRM.",
+  "Pergunte sobre automações.",
 ];
 
 const DADOS_QUALIFICACAO = [
@@ -294,33 +307,31 @@ export default function SalesAiPage() {
       </SolutionSection>
 
       {/* 9 — Veja antes de contratar */}
+      {/*
+        Elemento-assinatura da página. As quatro perguntas são exatamente os
+        itens da lista do documento — só deixam de ser bullets e viram o que
+        de fato são: mensagens que o visitante pode mandar. O "digitando"
+        entrega a resposta da Valéria sem inventar uma única palavra dela.
+      */}
       <SolutionSection
         id="experimente"
-        background="muted"
+        background="dark"
         eyebrow="Veja antes de contratar"
         title="Quer saber como é conversar com um Sales AI?"
         subtitle={
           <>
             <p>Chame a Zapbox no WhatsApp.</p>
             <p>
-              Você será atendido pela{" "}
-              <strong className="text-primary-950 font-semibold">Valéria</strong>, nossa própria
-              assistente comercial.
+              Você será atendido pela <strong className="font-semibold text-white">Valéria</strong>,
+              nossa própria assistente comercial.
             </p>
           </>
         }
       >
-        <SolutionList
-          items={[
-            "Pergunte sobre os planos.",
-            "Diga quantas pessoas atendem sua empresa.",
-            "Pergunte sobre CRM.",
-            "Pergunte sobre automações.",
-          ]}
-        />
+        <ConversaValeria />
 
-        <ScrollReveal className="mt-10 text-center">
-          <p className="text-base text-neutral-600">E veja a experiência funcionando de verdade.</p>
+        <ScrollReveal className="mt-12 text-center">
+          <p className="text-primary-200 text-base">E veja a experiência funcionando de verdade.</p>
           <div className="mt-8 flex justify-center">
             <SpecialistButton sourceCta="sales-ai-experimente-valeria" variant="primary" size="lg">
               Conversar com a Valéria
@@ -341,5 +352,71 @@ export default function SalesAiPage() {
         </p>
       </SolutionFinalCTA>
     </>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Conversa com a Valéria — elemento-assinatura de /sales-ai.
+ *
+ * As quatro mensagens são LITERALMENTE os itens da lista do documento de copy
+ * ("Pergunte sobre os planos." etc.); aqui elas só assumem a forma que já
+ * tinham no sentido — perguntas que o visitante manda. A resposta da Valéria
+ * NÃO é escrita: fica no indicador de digitação, que sugere o atendimento
+ * acontecendo sem colocar palavras na boca dela.
+ *
+ * Bolhas genéricas de conversa, com os tokens da Zapbox — nada da interface
+ * de nenhum aplicativo de mensagens é reproduzido.
+ */
+function ConversaValeria() {
+  return (
+    <div className="mx-auto w-full max-w-[30rem]">
+      <ul className="flex flex-col gap-3">
+        {PERGUNTAS_VALERIA.map((pergunta, i) => (
+          <ScrollReveal
+            key={pergunta}
+            as="li"
+            delay={i * 110}
+            direction="right"
+            distance="1rem"
+            className="flex justify-end"
+          >
+            <p
+              className={cn(
+                "bg-accent-600/18 border-accent-500/35 text-primary-50 max-w-[85%] border",
+                "rounded-2xl rounded-br-md px-4 py-2.5 text-left text-[0.9375rem]"
+              )}
+            >
+              {pergunta}
+            </p>
+          </ScrollReveal>
+        ))}
+
+        {/* Resposta chegando — sem texto, de propósito. */}
+        <ScrollReveal
+          as="li"
+          delay={PERGUNTAS_VALERIA.length * 110}
+          direction="left"
+          distance="1rem"
+          className="flex justify-start"
+        >
+          <span
+            role="status"
+            aria-label="Valéria está digitando"
+            className="glass-panel flex items-center gap-1.5 rounded-2xl rounded-bl-md px-4 py-3.5"
+          >
+            {[0, 1, 2].map((n) => (
+              <span
+                key={n}
+                aria-hidden="true"
+                style={{ animationDelay: `${n * 180}ms` }}
+                className="bg-accent-300 motion-safe:animate-typing block h-2 w-2 rounded-full"
+              />
+            ))}
+          </span>
+        </ScrollReveal>
+      </ul>
+    </div>
   );
 }

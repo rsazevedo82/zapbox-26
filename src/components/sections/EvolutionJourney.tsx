@@ -21,23 +21,28 @@ const STAGES = [
   { name: "Integre", solution: "ERP, CRM e outros sistemas" },
 ];
 
+/*
+ * Fundo em tom intermediário: nem o claro das seções vizinhas nem o primary-950
+ * do hero. A jornada é a espinha narrativa da home e ganha um terceiro nível de
+ * peso — que de quebra encerra a corrida de seções claras do final da página.
+ */
 export function EvolutionJourney() {
   return (
     <section
       id="jornada"
       aria-labelledby="jornada-titulo"
-      className="surface-noise surface-glow bg-surface-muted relative py-20 lg:py-28"
+      className="grid-fade bg-primary-900 relative overflow-hidden py-20 lg:py-28"
     >
       <div className="container">
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="jornada-titulo"
-            className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance text-white sm:text-4xl"
           >
             Comece simples. Evolua quando precisar.
           </h2>
 
-          <p className="mt-6 text-base text-neutral-600 sm:text-lg">
+          <p className="text-primary-200 mt-6 text-base sm:text-lg">
             Você não precisa transformar toda a operação de uma vez. Comece resolvendo o problema
             mais urgente. Quando sua equipe estiver pronta, o Zapbox ganha novas capacidades — sem
             obrigar sua empresa a trocar toda a operação.
@@ -49,7 +54,7 @@ export function EvolutionJourney() {
           {/* A linha nasce accent na etapa de entrada e esmaece ao avançar. */}
           <span
             aria-hidden="true"
-            className="from-accent-500/60 absolute top-5 right-[8.33%] left-[8.33%] hidden h-px bg-gradient-to-r via-neutral-300 to-neutral-200 lg:block"
+            className="from-accent-400/70 absolute top-5 right-[8.33%] left-[8.33%] hidden h-px bg-gradient-to-r via-white/30 to-white/15 lg:block"
           />
 
           {STAGES.map((stage, index) => {
@@ -72,8 +77,8 @@ export function EvolutionJourney() {
                   <span
                     aria-hidden="true"
                     className={cn(
-                      "from-accent-500/45 absolute top-11 -bottom-5 left-5 w-px -translate-x-1/2",
-                      "bg-gradient-to-b to-neutral-300/70 sm:hidden"
+                      "from-accent-400/60 absolute top-11 -bottom-5 left-5 w-px -translate-x-1/2",
+                      "bg-gradient-to-b to-white/25 sm:hidden"
                     )}
                   />
                 )}
@@ -81,13 +86,10 @@ export function EvolutionJourney() {
                 <span
                   className={cn(
                     "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
-                    "ring-surface-muted text-sm font-bold ring-8",
+                    "ring-primary-900 text-sm font-bold ring-8",
                     isEntryPoint
                       ? "from-accent-600 to-accent-700 glow-accent motion-safe:animate-node-pulse bg-gradient-to-b text-white shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]"
-                      : cn(
-                          "from-surface to-primary-50 text-primary-700 border border-neutral-300 bg-gradient-to-b",
-                          "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.9),0_1px_2px_0_rgb(0_33_54/0.08)]"
-                        )
+                      : "glass-panel text-primary-100"
                   )}
                 >
                   {index + 1}
@@ -97,12 +99,12 @@ export function EvolutionJourney() {
                   <h3
                     className={cn(
                       "text-base font-semibold",
-                      isEntryPoint ? "text-primary-950" : "text-primary-800"
+                      isEntryPoint ? "text-accent-300" : "text-white"
                     )}
                   >
                     {stage.name}
                   </h3>
-                  <p className="mt-1 text-sm text-neutral-600">{stage.solution}</p>
+                  <p className="text-primary-300 mt-1 text-sm">{stage.solution}</p>
                 </div>
               </ScrollReveal>
             );

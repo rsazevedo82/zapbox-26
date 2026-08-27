@@ -32,7 +32,7 @@ export function EvolutionBlock({ activeStep }: { activeStep?: EvolutionStep }) {
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="jornada-titulo"
-            className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-primary-950 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             O Zapbox cresce junto com sua operação
           </h2>

@@ -216,9 +216,15 @@ export default function IntegracoesPage() {
       </SolutionSection>
 
       {/* 7 — Zapbox + integração + automação */}
+      {/*
+        Escura, e com a constelação ao fundo: é o assunto da página desenhado
+        como ambiente — pontos separados que só fazem sentido ligados. Fica
+        atrás do conteúdo, em opacidade baixa, e não aparece em nenhuma outra
+        página do site.
+      */}
       <SolutionSection
         id="stack"
-        background="muted"
+        background="dark"
         title="Zapbox + integração + automação"
         subtitle={
           <>
@@ -228,7 +234,10 @@ export default function IntegracoesPage() {
           </>
         }
       >
+        <Constelacao />
+
         <FlowDiagram
+          surface="dark"
           nodes={[
             { label: "ERP informa", lines: ["pedido faturado"] },
             { label: "Automação" },
@@ -238,11 +247,12 @@ export default function IntegracoesPage() {
         />
 
         <ScrollReveal className="mx-auto mt-14 max-w-[44rem] text-center">
-          <p className="text-base text-neutral-600">Ou:</p>
+          <p className="text-primary-200 text-base">Ou:</p>
         </ScrollReveal>
 
         <div className="mt-8">
           <FlowDiagram
+            surface="dark"
             nodes={[
               { label: "Zapbox", lines: ["novo lead"] },
               { label: "Automação" },
@@ -285,5 +295,74 @@ export default function IntegracoesPage() {
         <p>Conte pra gente qual é.</p>
       </SolutionFinalCTA>
     </>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Constelação: elemento-assinatura desta página e de nenhuma outra.
+ *
+ * Sistemas isolados que só ganham sentido quando ligados — o argumento da
+ * página desenhado como ambiente. Fica atrás do conteúdo (-z-10, dentro do
+ * contexto de empilhamento que `surface-beam` cria na seção) e é decorativo:
+ * `aria-hidden`, sem texto e sem papel semântico.
+ */
+function Constelacao() {
+  const nos = [
+    { cx: 90, cy: 120 },
+    { cx: 300, cy: 60 },
+    { cx: 250, cy: 300 },
+    { cx: 520, cy: 190 },
+    { cx: 760, cy: 90 },
+    { cx: 700, cy: 340 },
+    { cx: 950, cy: 230 },
+    { cx: 1120, cy: 110 },
+    { cx: 1080, cy: 380 },
+  ];
+
+  const ligacoes = [
+    [0, 1],
+    [0, 2],
+    [1, 3],
+    [2, 3],
+    [3, 4],
+    [3, 5],
+    [4, 6],
+    [5, 6],
+    [6, 7],
+    [6, 8],
+  ];
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 1200 440"
+      preserveAspectRatio="xMidYMid slice"
+      className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-40"
+    >
+      <g stroke="rgb(0 153 95 / 0.35)" strokeWidth="1">
+        {ligacoes.map(([a, b]) => (
+          <line
+            key={`${a}-${b}`}
+            x1={nos[a].cx}
+            y1={nos[a].cy}
+            x2={nos[b].cx}
+            y2={nos[b].cy}
+          />
+        ))}
+      </g>
+      <g>
+        {nos.map((no) => (
+          <circle
+            key={`${no.cx}-${no.cy}`}
+            cx={no.cx}
+            cy={no.cy}
+            r="3.5"
+            fill="rgb(99 211 165 / 0.55)"
+          />
+        ))}
+      </g>
+    </svg>
   );
 }

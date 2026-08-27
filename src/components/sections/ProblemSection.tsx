@@ -32,7 +32,7 @@ export function ProblemSection() {
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
           <h2
             id="problema-titulo"
-            className="text-primary-950 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-primary-950 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             Seu WhatsApp está ajudando sua empresa a vender ou está criando mais confusão?
           </h2>

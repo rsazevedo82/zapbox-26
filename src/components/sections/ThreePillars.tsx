@@ -45,17 +45,17 @@ export function ThreePillars() {
     <section
       id="pilares"
       aria-labelledby="pilares-titulo"
-      className="surface-noise surface-glow bg-surface relative py-20 lg:py-28"
+      className="surface-beam grid-fade bg-primary-950 relative overflow-hidden py-20 lg:py-28"
     >
       <div className="container">
         <ScrollReveal className="mx-auto max-w-[46rem] text-center">
-          <p className="text-accent-700 text-sm font-semibold tracking-widest uppercase">
+          <p className="text-accent-300 text-sm font-semibold tracking-widest uppercase">
             Como funciona por dentro
           </p>
 
           <h2
             id="pilares-titulo"
-            className="text-primary-950 mt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl"
+            className="text-shine mt-4 font-display text-3xl leading-[1.12] font-bold tracking-tight text-balance sm:text-4xl"
           >
             Três pilares que tiram o WhatsApp do improviso
           </h2>
@@ -67,7 +67,10 @@ export function ThreePillars() {
               key={pillar.title}
               as="li"
               delay={i * 90}
-              className="card-surface card-lift flex flex-col rounded-xl p-6 lg:p-8"
+              className={cn(
+                "glass-panel flex flex-col rounded-xl p-6 lg:p-8",
+                "ease-fluid transition-colors duration-300 hover:border-white/25 hover:bg-white/10"
+              )}
             >
               <span
                 className={cn(
@@ -78,8 +81,8 @@ export function ThreePillars() {
                 {pillar.icon}
               </span>
 
-              <h3 className="text-primary-950 mt-5 text-xl font-semibold">{pillar.title}</h3>
-              <p className="mt-3 text-base text-neutral-600">{pillar.description}</p>
+              <h3 className="mt-5 text-xl font-semibold text-white">{pillar.title}</h3>
+              <p className="text-primary-200 mt-3 text-base">{pillar.description}</p>
             </ScrollReveal>
           ))}
         </ul>
