@@ -40,9 +40,9 @@ const spaceGrotesk = Space_Grotesk({
  * Title e description da home vêm de `geral/zapbox-copy-site.md`,
  * seção "13. META TITLES E META DESCRIPTIONS".
  */
-const SITE_TITLE = "Zapbox | Atendimento em equipe pelo WhatsApp";
+const SITE_TITLE = "Zapbox — Atendimento em Equipe pelo WhatsApp";
 const SITE_DESCRIPTION =
-  "Centralize seu WhatsApp, organize atendentes e mantenha todo o histórico da operação em um só lugar. Comece simples e evolua com CRM, automações e IA.";
+  "Dois atendentes respondendo o mesmo cliente? Histórico se perdendo? O Zapbox organiza sua equipe no mesmo número de WhatsApp — sem trocar nada.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
